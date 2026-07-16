@@ -1,0 +1,16 @@
+<%= simple_form_for medication do |f| %>
+  <%= f.error_notification %>
+
+  <% if @family_member %>
+    <%= hidden_field_tag :family_member_id, @family_member.id %>
+  <% end %>
+
+  <%= f.input :name, label: "Name" %>
+  <%= f.input :dosage, label: "Dosage" %>
+  <%= f.input :frequency, label: "Frequency" %>
+  <%= f.input :start_date, label: "Start date" %>
+  <%= f.input :end_date, label: "End date" %>
+  <%= f.input :reminder_time, label: "Reminder time", placeholder: "e.g. 08:00" %>
+
+  <%= f.button :submit %>
+<% end %>
