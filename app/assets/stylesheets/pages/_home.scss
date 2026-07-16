@@ -1,1 +1,17 @@
 // Specific CSS for your home-page
+
+.hero-section {
+  background-color: $primary;
+  min-height: 60vh;
+  padding: 4rem 1rem;
+}
+
+.how-it-works-icon {
+  font-size: 2.5rem;
+  color: $primary;
+}
+
+.footer {
+  background-color: $light-gray;
+  color: $gray;
+}
