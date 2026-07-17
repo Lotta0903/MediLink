@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   SYSTEM_PROMT = "You are a helpful medical assistant specializing in medicine and geriatric care.\n
    I am a eldery patient who seeking help about my medication.\n
    Help me understand my medication in simple, non technical language.\n Answer in simple plain text.\n"
+
   def create
     @chat = current_user.chats.find(params[:chat_id])
     @medication = @chat.medication
@@ -26,12 +27,12 @@ class MessagesController < ApplicationController
 
   private
 
-  def set_role
-    @message.role = @family_member.present? ? "family_member" : "user"
-  end
-
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def set_role
+    @message.role = @family_member.present? ? "family_member" : "user"
   end
 
   def medication_name

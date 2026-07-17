@@ -11,6 +11,8 @@ class MedicationsController < ApplicationController
   end
 
   def show
+    @medication = Medication.find(params[:id])
+    @chats = current_user.chats
   end
 
   def create
