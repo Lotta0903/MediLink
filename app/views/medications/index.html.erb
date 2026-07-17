@@ -37,6 +37,8 @@
             <td class="text-end">
               <%= link_to "Edit", edit_medication_path(medication), class: "btn btn-sm btn-outline-secondary" %>
               <%= button_to "Delete", medication_path(medication), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure you want to delete this medication?" } } %>
+              <%= button_to "MediBot", medication_chats_path(medication)%>
+
             </td>
           </tr>
         <% end %>

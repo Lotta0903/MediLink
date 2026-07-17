@@ -1,0 +1,58 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-4">
+      <h2>Past Conversations</h2>
+      <h4><%= @medication.name %></h4>
+
+      <div class="mb-4">
+        <% if @chats.any? %>
+          <ul class="list-unstyled">
+            <% @chats.each do |chat| %>
+              <li class="mb-2">
+                <%= link_to chat.title, chat_path(chat), class: "text-decoration-none" %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p> There are no chats yet.</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-8">
+
+      <h1 id="chat_title"><%= @chat.title %></h1>
+
+      <div id="messages">
+        <% @chat.messages.each do |message| %>
+          <% if message.role == "user" %>
+            <div class="d-flex justify-content-end mb-2">
+              <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
+                <%= message.content %>
+              </div>
+            </div>
+
+          <% elsif message.role == "assistant" %>
+            <div class="d-flex justify-content-start mb-5">
+              <div class="px-3 pb-0 pt-3">
+                <%= message.content %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div id="new_message_container" class="mt-4">
+        <%= simple_form_for [@chat, @message] do |f| %>
+          <%= f.input :content, label: "Do you have any questions?" %>
+          <%= f.button :submit, 'Ask MediBot', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <%= button_to "New Chat", medication_chats_path(@medication)%>
+
+</div>

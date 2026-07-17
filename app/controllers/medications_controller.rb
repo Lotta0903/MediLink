@@ -1,6 +1,6 @@
 class MedicationsController < ApplicationController
-  before_action :set_medication, only: [:edit, :update, :destroy]
-  before_action :set_family_member, only: [:index, :new, :create]
+  before_action :set_medication, only: %i[show edit update destroy]
+  before_action :set_family_member, only: %i[index new create]
 
   def index
     @medications = @family_member ? @family_member.medications : current_user.medications
@@ -8,6 +8,9 @@ class MedicationsController < ApplicationController
 
   def new
     @medication = Medication.new
+  end
+
+  def show
   end
 
   def create
@@ -31,7 +34,8 @@ class MedicationsController < ApplicationController
 
   def update
     if @medication.update(medication_params)
-      redirect_to medications_path(family_member_id: @medication.family_member_id), notice: "Medication updated successfully."
+      redirect_to medications_path(family_member_id: @medication.family_member_id),
+                  notice: "Medication updated successfully."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,9 +56,9 @@ class MedicationsController < ApplicationController
   def set_medication
     @medication = Medication.find(params[:id])
 
-    unless @medication.user == current_user || @medication.family_member&.user == current_user
-      redirect_to medications_path, alert: "Access denied." and return
-    end
+    return if @medication.user == current_user || @medication.family_member&.user == current_user
+
+    redirect_to medications_path, alert: "Access denied." and return
   end
 
   def medication_params
