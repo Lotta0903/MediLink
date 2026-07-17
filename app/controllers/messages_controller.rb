@@ -12,13 +12,15 @@ class MessagesController < ApplicationController
     @message.role = set_role
 
     if @message.save
-      llm = RubyLLM.chat
-      llm.with_instructions(instructions)
-      response = llm.ask(@message.content)
+      @llm = RubyLLM.chat
+      @llm.with_instructions(instructions)
+      chat_history
+      response = @llm.ask(@message.content)
 
       Message.create(role: "assistant", content: response.content, chat: @chat)
 
       @chat.generate_title_from_first_message
+
       redirect_to chat_path(@chat)
     else
       render "chats/show", status: :unprocessable_entity
@@ -37,6 +39,12 @@ class MessagesController < ApplicationController
 
   def medication_name
     @medication.name
+  end
+
+  def chat_history
+    @chat.messages.each do |message|
+      @llm.add_message(role: message.role, content: message.content)
+    end
   end
 
   def instructions
