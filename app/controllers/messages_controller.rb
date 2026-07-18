@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
 
   def create
     @chat = current_user.chats.find(params[:chat_id])
+    @chats = current_user.chats
     @medication = @chat.medication
 
     @message = Message.new(message_params)
@@ -17,13 +18,25 @@ class MessagesController < ApplicationController
       chat_history
       response = @llm.ask(@message.content)
 
-      Message.create(role: "assistant", content: response.content, chat: @chat)
+      @assistant_message = Message.create(role: "assistant", content: response.content, chat: @chat)
 
       @chat.generate_title_from_first_message
 
-      redirect_to chat_path(@chat)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to chat_path(@chat) }
+      end
     else
-      render "chats/show", status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            :new_message,
+            partial: "messages/form",
+            locals: { chat: @chat, message: @message }
+          )
+        end
+        format.html { render "chats/show", status: :unprocessable_entity }
+      end
     end
   end
 
