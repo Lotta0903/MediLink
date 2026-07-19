@@ -8,8 +8,7 @@ class MessagesController < ApplicationController
     @chats = current_user.chats
     @medication = @chat.medication
 
-    @message = Message.new(message_params)
-    @message.chat = @chat
+    @message = @chat.messages.new(message_params)
     @message.role = set_role
 
     if @message.save
@@ -30,10 +29,10 @@ class MessagesController < ApplicationController
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace(
-            :new_message,
+            :new_message_container,
             partial: "messages/form",
             locals: { chat: @chat, message: @message }
-          )
+            )
         end
         format.html { render "chats/show", status: :unprocessable_entity }
       end
