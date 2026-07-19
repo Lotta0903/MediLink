@@ -1,0 +1,13 @@
+<%= simple_form_for family_member do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :first_name, label: "First name" %>
+  <%= f.input :last_name, label: "Last name" %>
+  <%= f.input :status, label: "Status" %>
+  <%= f.input :caregiver_email,
+              label: "Caregiver email",
+              hint: "Email of another MediLink user who should receive alerts for this person's medications",
+              input_html: { value: family_member.caregiver&.email } %>
+
+  <%= f.button :submit %>
+<% end %>

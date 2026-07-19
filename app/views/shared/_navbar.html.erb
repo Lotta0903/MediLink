@@ -13,6 +13,15 @@
             <%= link_to "My medications", medications_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
+            <%= link_to "Family", family_members_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <% unread_count = current_user.notifications.unread.count %>
+            <%= link_to notifications_path, class: "nav-link" do %>
+              Notifications<%= " (#{unread_count})" if unread_count > 0 %>
+            <% end %>
+          </li>
+          <li class="nav-item">
             <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
           </li>
         <% else %>

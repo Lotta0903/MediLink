@@ -9,6 +9,11 @@ class MedicationLogsController < ApplicationController
     end
 
     @medication.medication_logs.create!(taken_at: Time.current)
+
+    if @medication.family_member&.caregiver
+      Notification.create!(user: @medication.family_member.caregiver, medication: @medication)
+    end
+
     redirect_to medications_path, notice: "Medication marked as taken."
   end
 end
