@@ -8,16 +8,25 @@ class MessagesController < ApplicationController
     @chats = current_user.chats
     @medication = @chat.medication
 
-    @message = @chat.messages.new(message_params)
+    @message = Message.new(message_params)
+    @message.chat = @chat
     @message.role = set_role
 
     if @message.save
+      @assistant_message = @chat.messages.create(role: "assistant", content: "")
       @llm = RubyLLM.chat
       @llm.with_instructions(instructions)
       chat_history
-      response = @llm.ask(@message.content)
 
-      @assistant_message = Message.create(role: "assistant", content: response.content, chat: @chat)
+      response = @llm.ask(@message.content) do |chunk|
+        next if chunk.content.blank?
+
+        @assistant_message.content += chunk.content
+        broadcast_replace(@assistant_message)
+      end
+
+      @assistant_message.update(content: response.content)
+      broadcast_replace(@assistant_message)
 
       @chat.generate_title_from_first_message
 
@@ -32,7 +41,7 @@ class MessagesController < ApplicationController
             :new_message_container,
             partial: "messages/form",
             locals: { chat: @chat, message: @message }
-            )
+          )
         end
         format.html { render "chats/show", status: :unprocessable_entity }
       end
@@ -55,11 +64,22 @@ class MessagesController < ApplicationController
 
   def chat_history
     @chat.messages.each do |message|
+      next if message.content.blank?
+
       @llm.add_message(role: message.role, content: message.content)
     end
   end
 
   def instructions
     [SYSTEM_PROMT, medication_name].compact.join("\n\n")
+  end
+
+  def broadcast_replace(message)
+    Turbo::StreamsChannel.broadcast_replace_to(
+      @chat,
+      target: helpers.dom_id(message),
+      partial: "messages/message",
+      locals: { message: message }
+    )
   end
 end
