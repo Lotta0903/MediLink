@@ -23,6 +23,7 @@
             <th>Start date</th>
             <th>End date</th>
             <th>Reminder time</th>
+            <th>Taken</th>
             <th></th>
           </tr>
         </thead>
@@ -35,6 +36,9 @@
               <td><%= medication.start_date %></td>
               <td><%= medication.end_date %></td>
               <td><%= medication.reminder_time %></td>
+              <td>
+                <%= button_to "Mark as taken", medication_medication_logs_path(medication), method: :post, class: "btn btn-sm btn-outline-success" %>
+              </td>
               <td class="text-end">
                 <%= link_to "Edit", edit_medication_path(medication), class: "btn btn-sm btn-outline-secondary" %>
                 <%= button_to "Delete", medication_path(medication), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure you want to delete this medication?" } } %>
