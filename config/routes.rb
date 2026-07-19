@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  resources :medications, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    resources :chats, only: [:new , :create]
+  end
+
+  resources :chats, only: :show do
+    resources :messages, only: [:create]
+  end
+
   resources :medications, only: [:index, :new, :create, :edit, :update, :destroy] do
     resources :medication_logs, only: [:create]
   end

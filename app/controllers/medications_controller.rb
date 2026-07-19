@@ -1,4 +1,5 @@
 class MedicationsController < ApplicationController
+  before_action :set_medication, only: %i[show edit update destroy]
   before_action :authenticate_user!
   before_action :set_medication, only: %i[edit update destroy]
   before_action :set_family_member, only: %i[index new create]
@@ -9,6 +10,11 @@ class MedicationsController < ApplicationController
 
   def new
     @medication = Medication.new
+  end
+
+  def show
+    @medication = Medication.find(params[:id])
+    @chats = current_user.chats
   end
 
   def create
