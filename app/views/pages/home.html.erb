@@ -9,10 +9,12 @@
       MediLink helps you track your medications and stay connected with your family,
       so everyone gets the care and reminders they need, all in one place.
     </p>
-    <div class="d-flex justify-content-center gap-3">
-      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-light btn-lg" %>
-      <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-light btn-lg" %>
-    </div>
+    <% unless user_signed_in? %>
+      <div class="d-flex justify-content-center gap-3">
+        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-light btn-lg" %>
+        <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-light btn-lg" %>
+      </div>
+    <% end %>
   </div>
 </section>
 
