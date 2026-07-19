@@ -1,5 +1,9 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<% end %>
+
 <div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
+  <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>
       <% if @family_member %>
         Medications for <%= @family_member.first_name %> <%= @family_member.last_name %>
@@ -11,42 +15,37 @@
   </div>
 
   <% if @medications.empty? %>
-    <p>No medications yet.</p>
+    <p class="text-muted">No medications yet.</p>
   <% else %>
-    <div class="table-responsive">
-      <table class="table table-striped align-middle">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Dosage</th>
-            <th>Frequency</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>Reminder time</th>
-            <th>Taken</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @medications.each do |medication| %>
-            <tr>
-              <td><%= medication.name %></td>
-              <td><%= medication.dosage %></td>
-              <td><%= medication.frequency %></td>
-              <td><%= medication.start_date %></td>
-              <td><%= medication.end_date %></td>
-              <td><%= medication.reminder_time %></td>
-              <td>
-                <%= button_to "Mark as taken", medication_medication_logs_path(medication), method: :post, class: "btn btn-sm btn-outline-success" %>
-              </td>
-              <td class="text-end">
-                <%= link_to "Edit", edit_medication_path(medication), class: "btn btn-sm btn-outline-secondary" %>
-                <%= button_to "Delete", medication_path(medication), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure you want to delete this medication?" } } %>
-              </td>
-            </tr>
+    <% upcoming = @medications.reject(&:taken_today?) %>
+    <% taken_today = @medications.select(&:taken_today?) %>
+
+    <section class="mb-4">
+      <h2 class="section-header">Upcoming</h2>
+      <% if upcoming.empty? %>
+        <p class="text-muted">Nothing left to take today.</p>
+      <% else %>
+        <div class="row g-3">
+          <% upcoming.each do |medication| %>
+            <%= render "medication_card", medication: medication %>
           <% end %>
-        </tbody>
-      </table>
-    </div>
+        </div>
+      <% end %>
+    </section>
+
+    <hr class="medications-divider">
+
+    <section>
+      <h2 class="section-header">Taken today</h2>
+      <% if taken_today.empty? %>
+        <p class="text-muted">No medications taken yet today.</p>
+      <% else %>
+        <div class="row g-3">
+          <% taken_today.each do |medication| %>
+            <%= render "medication_card", medication: medication %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
   <% end %>
 </div>

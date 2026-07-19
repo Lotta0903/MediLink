@@ -1,0 +1,26 @@
+<div class="col-12 col-md-6 col-lg-4">
+  <div class="medication-card position-relative p-4 h-100 <%= medication.taken_today? ? "bg-success-subtle" : "bg-white" %>">
+    <div class="medication-card__actions position-absolute d-flex gap-2">
+      <%= link_to edit_medication_path(medication) do %>
+        <i class="bi bi-pencil"></i>
+      <% end %>
+      <%= button_to medication_path(medication), method: :delete, class: "btn btn-link p-0 border-0", form: { data: { turbo_confirm: "Are you sure you want to delete this medication?" } } do %>
+        <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
+
+    <h3 class="medication-card__name mb-1"><%= medication.name %></h3>
+    <p class="medication-card__meta text-muted mb-2"><%= medication.dosage %> &middot; <%= medication.frequency %></p>
+    <p class="medication-card__time text-muted mb-3">
+      <i class="bi bi-clock"></i><%= medication.reminder_time %>
+    </p>
+
+    <% if medication.taken_today? %>
+      <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2">
+        &check; Taken at <%= medication.last_taken_time %>
+      </span>
+    <% else %>
+      <%= button_to "Mark as taken", medication_medication_logs_path(medication), method: :post, class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
