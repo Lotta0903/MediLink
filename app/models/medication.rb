@@ -3,8 +3,17 @@ class Medication < ApplicationRecord
   belongs_to :family_member, optional: true
   has_many :chats, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :medication_logs, dependent: :destroy
 
   validate :user_or_family_member_present
+
+  def taken_today?
+    medication_logs.where(taken_at: Date.current.all_day).exists?
+  end
+
+  def last_taken_time
+    medication_logs.order(taken_at: :desc).first&.taken_at&.strftime("%H:%M")
+  end
 
   private
 

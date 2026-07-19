@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :family_members, dependent: :destroy
   has_many :medications, dependent: :destroy
   has_many :chats, dependent: :destroy
+  has_many :cared_family_members, class_name: "FamilyMember", foreign_key: "caregiver_id"
+  has_many :notifications, dependent: :destroy
 end

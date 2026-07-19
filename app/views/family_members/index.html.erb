@@ -1,0 +1,20 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<% end %>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Family</h1>
+    <%= link_to "Add a family member", new_family_member_path, class: "btn btn-primary" %>
+  </div>
+
+  <% if @family_members.empty? %>
+    <p class="text-muted">No family members yet.</p>
+  <% else %>
+    <div class="row g-3">
+      <% @family_members.each do |family_member| %>
+        <%= render "family_member_card", family_member: family_member %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
