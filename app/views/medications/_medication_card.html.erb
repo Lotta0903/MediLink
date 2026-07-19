@@ -15,12 +15,18 @@
       <i class="bi bi-clock"></i><%= medication.reminder_time %>
     </p>
 
-    <% if medication.taken_today? %>
-      <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2">
-        &check; Taken at <%= medication.last_taken_time %>
-      </span>
-    <% else %>
-      <%= button_to "Mark as taken", medication_medication_logs_path(medication), method: :post, class: "btn btn-success" %>
-    <% end %>
+    <div class="d-flex gap-2 flex-wrap">
+      <% if medication.taken_today? %>
+        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2">
+          &check; Taken at <%= medication.last_taken_time %>
+        </span>
+      <% else %>
+        <%= button_to "Mark as taken", medication_medication_logs_path(medication), method: :post, class: "btn btn-success" %>
+      <% end %>
+
+      <%= link_to medication_path(medication), class: "btn btn-outline-primary" do %>
+        <i class="bi bi-chat-dots"></i> MediBot
+      <% end %>
+    </div>
   </div>
 </div>
