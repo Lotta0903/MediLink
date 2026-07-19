@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_19_172035) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_19_185746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,12 +25,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_19_172035) do
   end
 
   create_table "family_members", force: :cascade do |t|
+    t.bigint "caregiver_id"
     t.datetime "created_at", null: false
     t.string "first_name"
     t.string "last_name"
     t.string "status"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.index ["caregiver_id"], name: "index_family_members_on_caregiver_id"
     t.index ["user_id"], name: "index_family_members_on_user_id"
   end
 
@@ -90,6 +92,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_19_172035) do
   add_foreign_key "chats", "medications"
   add_foreign_key "chats", "users"
   add_foreign_key "family_members", "users"
+  add_foreign_key "family_members", "users", column: "caregiver_id"
   add_foreign_key "medication_logs", "medications"
   add_foreign_key "medications", "family_members"
   add_foreign_key "medications", "users"
