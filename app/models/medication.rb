@@ -3,6 +3,7 @@ class Medication < ApplicationRecord
   belongs_to :family_member, optional: true
   has_many :chats, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :medication_logs, dependent: :destroy
 
   validate :user_or_family_member_present
 
