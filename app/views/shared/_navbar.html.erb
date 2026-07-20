@@ -13,7 +13,7 @@
             <%= link_to "My medications", medications_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Family", family_members_path, class: "nav-link" %>
+            <%= link_to "Family", follows_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <% unread_count = current_user.notifications.unread.count %>

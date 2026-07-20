@@ -1,0 +1,27 @@
+<div class="col-12 col-md-6 col-lg-4">
+  <div class="medication-card position-relative p-4 h-100 bg-white">
+    <div class="medication-card__actions position-absolute d-flex gap-2">
+      <%= button_to follow_path(followed_user), method: :delete, class: "btn btn-link p-0 border-0", form: { data: { turbo_confirm: "Unfollow #{followed_user.email}?" } } do %>
+        <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
+
+    <h3 class="medication-card__name mb-3"><%= followed_user.email %></h3>
+
+    <% if followed_user.medications.empty? %>
+      <p class="text-muted small mb-0">No medications yet.</p>
+    <% else %>
+      <ul class="list-unstyled mb-0">
+        <% followed_user.medications.each do |medication| %>
+          <li class="mb-2">
+            <span class="fw-semibold"><%= medication.name %></span>
+            <span class="text-muted"> &middot; <%= medication.dosage %> &middot; <%= medication.reminder_time %></span>
+            <% if medication.taken_today? %>
+              <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill ms-1">Taken</span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

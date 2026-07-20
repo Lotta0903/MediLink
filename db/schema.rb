@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_19_192235) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_20_200321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,16 +24,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_19_192235) do
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
-  create_table "family_members", force: :cascade do |t|
-    t.bigint "caregiver_id"
+  create_table "follows", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "status"
+    t.bigint "followed_id", null: false
+    t.bigint "follower_id", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["caregiver_id"], name: "index_family_members_on_caregiver_id"
-    t.index ["user_id"], name: "index_family_members_on_user_id"
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
   end
 
   create_table "medication_logs", force: :cascade do |t|
@@ -48,14 +46,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_19_192235) do
     t.datetime "created_at", null: false
     t.string "dosage"
     t.date "end_date"
-    t.bigint "family_member_id"
     t.string "frequency"
     t.string "name"
     t.string "reminder_time"
     t.date "start_date"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["family_member_id"], name: "index_medications_on_family_member_id"
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_medications_on_user_id"
   end
 
@@ -104,10 +100,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_19_192235) do
 
   add_foreign_key "chats", "medications"
   add_foreign_key "chats", "users"
-  add_foreign_key "family_members", "users"
-  add_foreign_key "family_members", "users", column: "caregiver_id"
+  add_foreign_key "follows", "users", column: "followed_id"
+  add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "medication_logs", "medications"
-  add_foreign_key "medications", "family_members"
   add_foreign_key "medications", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "notifications", "medications"
