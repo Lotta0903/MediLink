@@ -1,0 +1,40 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<% end %>
+
+<div class="container mt-4">
+  <h1 class="mb-4">Family</h1>
+
+  <%= form_with url: follows_path, method: :post, local: true, class: "d-flex gap-2 mb-4" do %>
+    <input type="email" name="email" class="form-control" placeholder="Enter their MediLink email" required>
+    <button type="submit" class="btn btn-primary text-nowrap">Follow</button>
+  <% end %>
+
+  <section class="mb-4">
+    <h2 class="section-header">People you follow</h2>
+    <% if @following.empty? %>
+      <p class="text-muted">You're not following anyone yet.</p>
+    <% else %>
+      <div class="row g-3">
+        <% @following.each do |followed_user| %>
+          <%= render "followed_user_card", followed_user: followed_user %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+
+  <hr class="medications-divider">
+
+  <section>
+    <h2 class="section-header">People following you</h2>
+    <% if @followers.empty? %>
+      <p class="text-muted">No one is following you yet.</p>
+    <% else %>
+      <div class="row g-3">
+        <% @followers.each do |follower| %>
+          <%= render "follower_card", follower: follower %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+</div>
