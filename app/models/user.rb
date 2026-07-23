@@ -21,4 +21,20 @@ class User < ApplicationRecord
   def following?(user)
     following.include?(user)
   end
+
+  def full_name
+    if first_name.present? && last_name.present?
+      "#{first_name} #{last_name}"
+    else
+      email.split("@").first
+    end
+  end
+
+  def initials
+    if first_name.present? && last_name.present?
+      "#{first_name[0]}#{last_name[0]}".upcase
+    else
+      email[0, 2].upcase
+    end
+  end
 end
