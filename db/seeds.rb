@@ -12,10 +12,10 @@ Follow.destroy_all
 User.destroy_all
 
 puts "Creating users..."
-alice = User.create!(email: "alice@medilink.dev", password: "password123", password_confirmation: "password123")
-bob   = User.create!(email: "bob@medilink.dev", password: "password123", password_confirmation: "password123")
-carla = User.create!(email: "carla@medilink.dev", password: "password123", password_confirmation: "password123")
-marc  = User.create!(email: "marc@medilink.dev", password: "password123", password_confirmation: "password123")
+alice = User.create!(email: "alice@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "Alice", last_name: "Miller")
+bob   = User.create!(email: "bob@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "Bob", last_name: "Garcia")
+carla = User.create!(email: "carla@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "Carla", last_name: "Novak")
+marc  = User.create!(email: "marc@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "Marc", last_name: "Dubois")
 
 def create_medications(owner, medications)
   medications.each { |attrs| owner.medications.create!(attrs) }
