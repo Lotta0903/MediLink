@@ -1,42 +1,38 @@
 <%= turbo_stream_from @chat %>
 
-<div class="container">
+<div class="medibot-container">
 
-  <div class="row">
-    <div class="col-4">
-      <h2>Past Conversations</h2>
-      <h4><%= @medication.name %></h4>
-
-      <div class="mb-4">
-        <% if @chats.any? %>
-          <ul class="list-unstyled">
-            <% @chats.each do |chat| %>
-              <li class="mb-2">
-                <%= link_to chat.title, chat_path(chat), class: "text-decoration-none" %>
-              </li>
-            <% end %>
-          </ul>
-        <% else %>
-          <p> There are no chats yet.</p>
-        <% end %>
-      </div>
+  <div class="row" data-controller="toggle" >
+    <div class="col-2" data-toggle-target="hideable">
+      <nav class="sidenav">
+        <div class="mb-4">
+          <%= render "messages/sidenav", chats: @chats %>
+        </div>
+      </nav>
+    </div>
+    <div class="col-auto">
+      <%= link_to "#", class:"d-none nav-link", data:{ toggle_target: "show", action: "click->toggle#call"} do %>
+        <i class="fa-solid fa-bars"></i>
+      <% end %>
     </div>
 
-    <div class="col-8">
+    <div class="col">
+      <div class="medibot">
 
-      <h1 id="chat_title"><%= @chat.title %></h1>
+        <div id="messages">
+          <%= render "messages/messages", messages:@chat.messages %>
+        </div>
 
-      <div id="messages">
-       <%= render "messages/messages", messages:@chat.messages %>
+        <div id="new_message_container" class="mt-4", data-toggle-target="input", data-action="submit->toggle#submit">
+          <div class="greeting  <%= "d-none" if @chat.messages.any? %>" data-toggle-target="hide">
+            <h1 id="chat_title"> How can I <span id="span">help you today</span>🩺</h1>
+            <p>Your AI assistant for medication guidance</p>
+          </div>
+          <%= render "messages/form", chat: @chat%>
+        </div>
+
+        </div>
       </div>
-
-      <div id="new_message_container" class="mt-4">
-        <%= render "messages/form", chat: @chat, message: @message %>
-      </div>
-
-    </div>
   </div>
-
-  <%= button_to "New Chat", medication_chats_path(@medication)%>
 
 </div>

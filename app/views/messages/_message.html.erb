@@ -1,14 +1,14 @@
     <% if message.role == "user" %>
-      <div class="d-flex justify-content-end mb-2">
-        <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
+      <div class="d-flex justify-content-end mb-5">
+        <div class="bg-primary-subtle px-3 py-2 rounded-pill">
           <%= message.content %>
         </div>
       </div>
 
       <% elsif message.role == "assistant" %>
         <div class="d-flex justify-content-start mb-5" id="<%= dom_id(message) %>">
-          <div class="px-3 pb-0 pt-3">
+          <div class="bg-secondary-subtle px-3  py-2 rounded-pill">
             <%= message.content.present? ? (message.content) : "..." %>
           </div>
-      </div>
+        </div>
     <% end %>

@@ -1,4 +1,6 @@
-<%= simple_form_for [chat, message] do |f| %>
-  <%= f.input :content, label: false, placeholder: "Do you have any questions?" %>
-  <%= f.button :submit, 'Ask MediBot', class: 'btn btn-primary' %>
+<%= form_with model: Message.new, url: chat_messages_path(chat), data: { turbo_stream: true }, html: { class: "your-form-class" } do |f| %>
+  <div class="input-wrapper">
+    <%= f.text_field :content, id: "input-field", placeholder: "Do you have any questions?" %>
+    <button type="submit"><i class="fa-solid fa-circle-arrow-up"></i></button>
+  </div>
 <% end %>
