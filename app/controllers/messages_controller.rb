@@ -30,6 +30,12 @@ class MessagesController < ApplicationController
 
       @chat.generate_title_from_first_message
 
+      Turbo::StreamsChannel.broadcast_update_to(
+        @chat,
+        target: helpers.dom_id(@chat, :title),
+        html: @chat.title
+      )
+
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to chat_path(@chat) }

@@ -16,9 +16,12 @@
 
     <% chats.each do |chat| %>
       <li class="mb-2">
-        <%= link_to chat_path(chat), id: "chat-item", class: "chat-link" do %>
-          <%= chat.title %>
-        <% end %>
+        <%= link_to chat_path(chat), class: "chat-item chat-link" do %>
+          <span id="<%= dom_id(chat, :title) %>">
+            <%= chat.title %>
+          </span>
+      <% end %>
+
       </li>
     <% end %>
 
