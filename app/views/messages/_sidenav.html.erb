@@ -1,0 +1,28 @@
+<% if chats.any? %>
+  <ul class="list-unstyled">
+    <li>
+      <%= link_to "#", class: "nav-link", data: { action: "click->toggle#call" } do %>
+        <i class="fa-solid fa-bars"></i>
+      <% end %>
+    </li>
+    <li>
+      <div id="new-chat">
+        <%= button_to medication_chats_path(@medication), class: "new-chat-btn" do %>
+          <i class="fa-regular fa-pen-to-square"></i>
+          New Chat
+        <% end %>
+      </div>
+    </li>
+
+    <% chats.each do |chat| %>
+      <li class="mb-2">
+        <%= link_to chat_path(chat), id: "chat-item", class: "chat-link" do %>
+          <%= chat.title %>
+        <% end %>
+      </li>
+    <% end %>
+
+  </ul>
+<% else %>
+  <p>There are no chats yet.</p>
+<% end %>

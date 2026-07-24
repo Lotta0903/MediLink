@@ -28,6 +28,7 @@
         <div class="row g-3">
           <% upcoming.each do |medication| %>
             <%= render "medication_card", medication: medication %>
+            <%= button_to "medibot", medication_chats_path(medication)%>
           <% end %>
         </div>
       <% end %>

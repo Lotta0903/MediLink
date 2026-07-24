@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resources :medications, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :chats, only: [:new , :create]
+    resources :chats, only: [:create]
   end
 
   resources :chats, only: :show do
