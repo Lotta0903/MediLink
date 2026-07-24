@@ -1,0 +1,42 @@
+.app-card {
+  background-color: $card;
+  border: 1px solid $border;
+  border-radius: 1.5rem; // 24px
+  box-shadow: 0 8px 32px rgba(15, 23, 42, .06);
+  padding: 2rem; // 32px
+
+  &--tinted {
+    background-color: $primary-light;
+    border-color: $primary-light;
+  }
+
+  &--compact {
+    border-radius: 1.25rem; // 20px
+    padding: 1.5rem; // 24px
+    box-shadow: 0 2px 12px rgba(15, 23, 42, .05);
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// /medications cards only — subtle lift on hover, press on click
+.medication-card-wrapper {
+  transition: transform .15s cubic-bezier(.4, 0, .2, 1), box-shadow .15s ease;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(14, 165, 233, 0.12);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: scale(.98);
+  }
+}
+
+.circle-preview {
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+}

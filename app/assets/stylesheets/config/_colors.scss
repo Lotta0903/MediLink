@@ -1,10 +1,20 @@
 // Define variables for your color scheme
 
-// For example:
-$red: #FD1015;
-$blue: #0D6EFD;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+$primary:        #06B6D4; // bright cyan turquoise
+$primary-dark:   #0891B2; // hover/active states
+$primary-light:  #CFFAFE; // subtle backgrounds
+$primary-glow:   rgba(6, 182, 212, 0.4); // button glow shadows
+$medibot:        #EC4899; // vivid pink, Ask MediBot
+$medibot-light:  #FCE7F3;
+$coral:          #FB7185; // strategic accent touches
+$coral-light:    #FFE4E6;
+$mint:           #10B981; // taken/success
+$mint-light:     #D1FAE5;
+$sunshine:       #FBBF24;
+$sunshine-light: #FEF3C7;
+$rose:           #FB7185; // danger/missed (aliased to coral this round)
+$text-primary:   #0F172A;
+$text-muted:     #64748B;
+$bg-app:         #F0FDFF; // very subtle cyan tint
+$card:           #FFFFFF;
+$border:         #E2E8F0;
