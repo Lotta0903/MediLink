@@ -2,24 +2,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <% end %>
 
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>My medications</h1>
-    <%= link_to "Add a medication", new_medication_path, class: "btn btn-primary" %>
+<div class="container mx-auto px-4 pb-4" style="max-width: 1140px;">
+  <div class="text-center mb-4">
+    <h1 class="page-title mt-4 mb-3">My Medications</h1>
+    <p class="mb-3" style="font-size: 1.25rem; font-weight: 500; color: #FB7185; font-style: italic; letter-spacing: .03em;">Never miss a dose again.</p>
+  </div>
+
+  <div class="text-center mb-5">
+    <%= link_to new_medication_path, class: "btn-add-medication text-decoration-none", data: { controller: "add-button", action: "mousedown->add-button#pulse" } do %>
+      <span class="btn-add-medication-icon">+</span>
+      Add a medication
+    <% end %>
   </div>
 
   <% if @medications.empty? %>
-    <p class="text-muted">No medications yet.</p>
+    <p class="text-muted text-center">No medications yet.</p>
   <% else %>
     <% upcoming = @medications.reject(&:taken_today?) %>
     <% taken_today = @medications.select(&:taken_today?) %>
 
     <section class="mb-4">
-      <h2 class="section-header">Upcoming</h2>
+      <h2 class="mb-3" style="font-weight: 600; letter-spacing: .02em;">Upcoming ⏰</h2>
       <% if upcoming.empty? %>
-        <p class="text-muted">Nothing left to take today.</p>
+        <p class="text-muted text-center">Nothing left to take today.</p>
       <% else %>
-        <div class="row g-3">
+        <div class="row g-3 justify-content-center">
           <% upcoming.each do |medication| %>
             <%= render "medication_card", medication: medication %>
             <%= button_to "medibot", medication_chats_path(medication)%>
@@ -30,12 +37,12 @@
 
     <hr class="medications-divider">
 
-    <section>
-      <h2 class="section-header">Taken today</h2>
+    <section class="mt-4">
+      <h2 class="mb-3" style="font-weight: 600; letter-spacing: .02em;">Taken today ✓</h2>
       <% if taken_today.empty? %>
-        <p class="text-muted">No medications taken yet today.</p>
+        <p class="text-muted text-center">No medications taken yet today.</p>
       <% else %>
-        <div class="row g-3">
+        <div class="row g-3 justify-content-center">
           <% taken_today.each do |medication| %>
             <%= render "medication_card", medication: medication %>
           <% end %>

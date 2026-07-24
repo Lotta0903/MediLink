@@ -5,7 +5,11 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read: false) }
 
   def message
-    owner_name = medication.user.email.split("@").first
-    "#{owner_name} took their #{medication.name}"
+    verb = missed? ? "missed" : "took"
+    "#{medication.user.full_name} #{verb} their #{medication.name}"
+  end
+
+  def status
+    missed? ? :missed : :taken
   end
 end

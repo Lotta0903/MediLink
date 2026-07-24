@@ -18,3 +18,10 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
+
+.avatar-placeholder {
+  border-radius: 50%;
+  background-color: $primary-light;
+  color: $primary;
+  font-weight: 700;
+}

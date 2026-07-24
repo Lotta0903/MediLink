@@ -1,0 +1,42 @@
+<%
+  if medication.taken_today?
+    strip_bg    = "#10B981"
+    strip_color = "#FFFFFF"
+    strip_text  = "✓ TAKEN AT #{medication.last_taken_time}"
+  else
+    reminder = Time.zone.parse(medication.reminder_time) rescue nil
+    now = Time.current
+
+    if reminder.nil? || reminder <= now
+      strip_bg    = "#FFE4E6"
+      strip_color = "#FB7185"
+      strip_text  = "OVERDUE"
+    else
+      diff_minutes = ((reminder - now) / 60).round
+      hours = diff_minutes / 60
+      minutes = diff_minutes % 60
+      strip_bg    = "#CFFAFE"
+      strip_color = "#0891B2"
+      strip_text  = "IN #{hours}H #{minutes}M"
+    end
+  end
+%>
+
+<div class="col-12 col-md-4">
+  <div class="mx-auto d-flex flex-column" style="min-height: 200px; background-color: #FFFFFF; border: 1.5px solid #CFFAFE; border-radius: 1.25rem; box-shadow: 0 2px 12px rgba(14, 165, 233, 0.06); overflow: hidden;">
+    <div class="text-center flex-grow-1 d-flex flex-column align-items-center justify-content-center" style="padding: 1.125rem; gap: .5rem;">
+      <p class="text-primary mb-0" style="font-size: 1.625rem; font-weight: 700;"><%= medication.reminder_time %></p>
+
+      <div class="d-flex align-items-center justify-content-center" style="gap: .625rem;">
+        <span style="font-size: 24px; line-height: 1;">💊</span>
+        <p class="mb-0" style="font-size: .9375rem; font-weight: 700; color: #0F172A; text-transform: uppercase; letter-spacing: .03em;"><%= medication.name %></p>
+      </div>
+
+      <p class="mb-0" style="font-size: .9375rem; font-weight: 600; color: #0F172A; text-transform: uppercase;"><%= medication.dosage %></p>
+      <p class="text-muted mb-0" style="font-size: .75rem; font-weight: 500;"><%= medication.frequency %></p>
+    </div>
+    <div class="text-center" style="background-color: <%= strip_bg %>; padding: .625rem;">
+      <span style="color: <%= strip_color %>; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;"><%= strip_text %></span>
+    </div>
+  </div>
+</div>

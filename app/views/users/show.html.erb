@@ -2,20 +2,59 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <% end %>
 
-<div class="container mt-4 d-flex justify-content-center">
-  <div class="card shadow-sm rounded-4 p-4 text-center" style="max-width: 500px; width: 100%;">
-    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3"
-         style="width: 150px; height: 150px; font-size: 3rem;">
-      <%= @user.initials %>
+<div data-controller="circle-toggle">
+  <div class="container mt-4">
+    <h1 class="page-title mb-2">My Profile</h1>
+  </div>
+
+  <div class="container d-flex justify-content-center">
+    <div class="app-card text-center" style="max-width: 500px; width: 100%;">
+      <div class="mb-3">
+        <%= render "shared/user_avatar", user: @user, size: 128 %>
+      </div>
+
+      <h2 class="mb-3"><%= @user.full_name %></h2>
+      <p class="text-muted small mb-4"><%= @user.email %></p>
+
+      <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary btn-action" %>
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <button type="button" class="btn btn-outline-primary btn-action rounded-pill" style="padding: .875rem 2.5rem; font-size: 1.0625rem; font-weight: 600;" data-action="click->circle-toggle#toggle">
+      View my circle
+    </button>
+  </div>
+
+  <div class="circle-preview mx-auto mt-4" style="max-width: 960px;" data-circle-toggle-target="panel">
+    <div class="mb-4">
+      <p class="section-header mb-3">People you follow</p>
+      <% if @user.following.empty? %>
+        <p class="text-muted small">You're not following anyone yet.</p>
+      <% else %>
+        <div class="row g-4">
+          <% @user.following.each do |followed_user| %>
+            <%= render "follows/followed_user_card", followed_user: followed_user %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
-    <h2 class="fw-bold mb-1"><%= @user.full_name %></h2>
-    <p class="text-muted small mb-4"><%= @user.email %></p>
-
-    <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary" %>
+    <div>
+      <p class="section-header mb-3">People following you</p>
+      <% if @user.followers.empty? %>
+        <p class="text-muted small">No one is following you yet.</p>
+      <% else %>
+        <div class="d-flex gap-3 overflow-x-auto pb-2">
+          <% @user.followers.each do |follower| %>
+            <div class="text-center flex-shrink-0" style="width: 90px;">
+              <%= render "shared/user_avatar", user: follower, size: 56 %>
+              <p class="small mt-2 mb-0 text-truncate"><%= follower.full_name %></p>
+              <p class="text-muted mb-0 text-truncate" style="font-size: .6875rem;"><%= follower.email %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
-
-<div class="text-center mt-3">
-  <%= link_to "View family members", follows_path, class: "btn btn-outline-secondary" %>
 </div>

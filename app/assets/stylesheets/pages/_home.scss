@@ -3,7 +3,7 @@
 .hero-section {
   background-color: $primary;
   min-height: 60vh;
-  padding: 4rem 1rem;
+  padding: 6.5rem 1rem; // 100px+ top/bottom
 }
 
 .how-it-works-icon {
@@ -12,6 +12,6 @@
 }
 
 .footer {
-  background-color: $light-gray;
-  color: $gray;
+  background-color: $bg-app;
+  color: $text-muted;
 }

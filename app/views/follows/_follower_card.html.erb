@@ -1,5 +1,7 @@
-<div class="col-12 col-md-6 col-lg-4">
-  <div class="medication-card p-4 h-100 bg-white">
-    <h3 class="medication-card__name mb-0"><%= follower.email %></h3>
+<div class="col-12 col-md-4">
+  <div class="app-card app-card--compact mx-auto h-100 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 160px; padding: 1rem; gap: .375rem;">
+    <%= render "shared/user_avatar", user: follower, size: 64 %>
+    <p class="mb-0" style="font-size: 1rem; font-weight: 600;"><%= follower.full_name %></p>
+    <p class="text-muted mb-0" style="font-size: .8125rem;"><%= follower.email %></p>
   </div>
 </div>

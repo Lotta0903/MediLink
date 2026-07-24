@@ -2,74 +2,13 @@
 
 .section-header {
   font-size: .8rem;
-  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .08em;
-  color: rgba($gray, .55);
+  color: $text-muted;
   margin-bottom: 1rem;
 }
 
 .medications-divider {
   border: none;
-  border-top: 1px solid rgba($gray, .1);
+  border-top: 1px solid $border;
   margin: 2.5rem 0;
-}
-
-.medication-card {
-  background-color: white;
-  border-radius: $border-radius-xxl;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
-  transition: transform .15s ease, box-shadow .15s ease;
-  animation: medication-card-fade-in .4s ease both;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, .1);
-  }
-
-  &__actions {
-    top: .75rem;
-    right: .75rem;
-
-    a,
-    button {
-      color: rgba($gray, .45);
-      font-size: 1.05rem;
-      line-height: 1;
-      transition: color .15s ease;
-
-      &:hover {
-        color: $gray;
-      }
-    }
-  }
-
-  &__name {
-    font-size: 1.15rem;
-    font-weight: 700;
-  }
-
-  &__meta {
-    font-size: .875rem;
-  }
-
-  &__time {
-    font-size: .875rem;
-
-    i {
-      margin-right: .25rem;
-    }
-  }
-}
-
-@keyframes medication-card-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }

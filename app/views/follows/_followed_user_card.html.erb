@@ -1,27 +1,56 @@
-<div class="col-12 col-md-6 col-lg-4">
-  <div class="medication-card position-relative p-4 h-100 bg-white">
-    <div class="medication-card__actions position-absolute d-flex gap-2">
+<div class="col-12 col-md-4">
+  <div class="app-card mx-auto position-relative h-100" style="min-height: 260px; padding: 1.5rem;">
+    <div class="position-absolute" style="top: 1rem; right: 1rem;">
       <%= button_to follow_path(followed_user), method: :delete, class: "btn btn-link p-0 border-0", form: { data: { turbo_confirm: "Unfollow #{followed_user.email}?" } } do %>
-        <i class="bi bi-trash"></i>
+        <i class="bi bi-trash icon-muted icon-danger-hover" style="font-size: .875rem;"></i>
       <% end %>
     </div>
 
-    <h3 class="medication-card__name mb-3"><%= followed_user.email %></h3>
+    <div class="d-flex align-items-center gap-3 mb-3">
+      <%= render "shared/user_avatar", user: followed_user, size: 56 %>
+      <div>
+        <p class="mb-0" style="font-size: 1rem; font-weight: 600;"><%= followed_user.full_name %></p>
+        <p class="text-muted mb-0" style="font-size: .8125rem;"><%= followed_user.email %></p>
+      </div>
+    </div>
 
-    <% if followed_user.medications.empty? %>
-      <p class="text-muted small mb-0">No medications yet.</p>
+    <p class="section-header mb-2" style="font-size: .6875rem;">Today's schedule</p>
+
+    <% medications = followed_user.medications %>
+    <% if medications.empty? %>
+      <p class="text-muted fst-italic mb-0" style="font-size: .8125rem;">No medications scheduled today</p>
     <% else %>
-      <ul class="list-unstyled mb-0">
-        <% followed_user.medications.each do |medication| %>
-          <li class="mb-2">
-            <span class="fw-semibold"><%= medication.name %></span>
-            <span class="text-muted"> &middot; <%= medication.dosage %> &middot; <%= medication.reminder_time %></span>
-            <% if medication.taken_today? %>
-              <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill ms-1">Taken</span>
-            <% end %>
+      <ul class="list-unstyled mb-2">
+        <% medications.first(2).each do |medication| %>
+          <li class="d-flex align-items-center gap-2 mb-2">
+            <span class="text-primary" style="font-size: .875rem; font-weight: 700;"><%= medication.reminder_time %></span>
+            <span style="font-size: .875rem; font-weight: 600; color: #0F172A;"><%= medication.name %></span>
+            <span class="rounded-circle ms-auto flex-shrink-0" style="width: 8px; height: 8px; background-color: <%= medication.taken_today? ? "#10D687" : "#E2E8F0" %>;"></span>
           </li>
         <% end %>
       </ul>
+
+      <% if medications.size > 2 %>
+        <button type="button" class="btn btn-outline-primary w-100" style="border-radius: 12px; padding: .5rem 1rem; font-weight: 600; font-size: .8125rem;"
+                data-bs-toggle="collapse" data-bs-target="#all-meds-<%= followed_user.id %>">
+          See all medications &rarr;
+        </button>
+
+        <div class="collapse mt-3" id="all-meds-<%= followed_user.id %>">
+          <ul class="list-unstyled mb-0 text-start">
+            <% medications.each do |medication| %>
+              <li class="d-flex align-items-center gap-2 mb-2">
+                <span class="text-primary" style="font-size: .8125rem; font-weight: 700;"><%= medication.reminder_time %></span>
+                <span style="font-size: .8125rem; font-weight: 600;"><%= medication.name %></span>
+                <span class="text-muted" style="font-size: .75rem;"><%= medication.dosage %></span>
+                <span class="ms-auto small <%= medication.taken_today? ? "text-success" : "text-muted" %>">
+                  <%= medication.taken_today? ? "Taken" : "Pending" %>
+                </span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
