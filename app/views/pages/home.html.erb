@@ -1,48 +1,106 @@
-<% content_for :head do %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<% end %>
+<% if user_signed_in? %>
+  <div class="container mt-4" style="padding-bottom: 2.5rem;" data-controller="greeting" data-greeting-first-name-value="<%= @first_name %>">
+    <div class="mx-auto" style="max-width: 720px;">
+      <div class="text-center gap-32">
+        <h1 class="page-title mb-2" data-greeting-target="greeting"></h1>
+      </div>
 
-<section class="hero-section text-center text-white d-flex align-items-center">
-  <div class="container">
-    <h1 class="display-4 fw-bold mb-3">Never miss a dose again</h1>
-    <p class="lead mb-4">
-      MediLink helps you track your medications and stay connected with your family,
-      so everyone gets the care and reminders they need, all in one place.
-    </p>
-    <% unless user_signed_in? %>
+      <div class="d-flex justify-content-center mb-4">
+        <div class="app-card d-flex justify-content-between align-items-center" style="max-width: 560px; width: 100%; padding: 1.5rem 2rem;">
+          <div class="text-center">
+            <p class="section-header mb-1">Yesterday</p>
+            <i class="bi bi-arrow-left text-muted" style="font-size: 1.25rem;"></i>
+          </div>
+
+          <div class="badge-primary-soft rounded-pill d-flex flex-column align-items-center justify-content-center text-center" style="padding: .75rem 1.5rem; min-width: 150px;">
+            <p class="section-header text-primary mb-1" style="font-weight: 600;">Today</p>
+            <p class="text-muted mb-0" style="font-size: 1rem; font-weight: 500;" data-greeting-target="todayDate"></p>
+          </div>
+
+          <div class="text-center">
+            <p class="section-header mb-1">Tomorrow</p>
+            <i class="bi bi-arrow-right text-muted" style="font-size: 1.25rem;"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center gap-40">
+        <div class="app-card mx-auto" style="max-width: 460px; width: 100%; padding: 1.5rem; border: 2px solid #CFFAFE; border-radius: 1.5rem; box-shadow: 0 6px 24px rgba(6, 182, 212, 0.12);">
+          <% percentage = @total_today_count.zero? ? 0 : (@taken_today_count * 100.0 / @total_today_count).round %>
+          <% remaining = @total_today_count - @taken_today_count %>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <p class="mb-0" style="font-size: .6875rem; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: .08em;">Today's progress</p>
+            <p class="text-primary mb-0" style="font-size: 1rem; font-weight: 700;"><%= @taken_today_count %> / <%= @total_today_count %></p>
+          </div>
+          <div class="progress" style="height: 12px;">
+            <div class="progress-bar" role="progressbar" style="--progress-width: <%= percentage %>%;" aria-valuenow="<%= percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <p class="mb-0" style="font-size: .8125rem; font-weight: 500; color: #0F172A;">
+              <%= remaining <= 0 ? "All done today 🎉" : "Keep going, #{@first_name} 🌱" %>
+            </p>
+            <p class="text-primary mb-0" style="font-size: .8125rem; font-weight: 600;"><%= percentage %>%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <h2 class="text-primary mb-3" style="font-weight: 700;">Today's medications 📅</h2>
+        <p class="text-muted fst-italic mb-4" style="font-size: .875rem; font-weight: 500;">Your scheduled doses for today</p>
+      </div>
+
+      <% if @today_medications.empty? %>
+        <p class="text-muted text-center">No medications scheduled.</p>
+      <% else %>
+        <div class="row g-4 justify-content-center">
+          <% @today_medications.each do |medication| %>
+            <%= render "medication_summary_card", medication: medication %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <section class="hero-section text-center text-white d-flex align-items-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold mb-3">Never miss a dose again</h1>
+      <p class="lead mb-4">
+        MediLink helps you track your medications and stay connected with your family,
+        so everyone gets the care and reminders they need, all in one place.
+      </p>
       <div class="d-flex justify-content-center gap-3">
         <%= link_to "Sign up", new_user_registration_path, class: "btn btn-light btn-lg" %>
         <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-light btn-lg" %>
       </div>
-    <% end %>
-  </div>
-</section>
+    </div>
+  </section>
 
-<section class="how-it-works py-5">
-  <div class="container">
-    <h2 class="text-center mb-5">How it works</h2>
-    <div class="row text-center g-4">
-      <div class="col-md-4">
-        <i class="bi bi-capsule how-it-works-icon"></i>
-        <h3 class="h5 mt-3">Track your medications</h3>
-        <p class="text-muted">Keep a clear record of every medication, dosage and schedule for you and your family.</p>
-      </div>
-      <div class="col-md-4">
-        <i class="bi bi-people-fill how-it-works-icon"></i>
-        <h3 class="h5 mt-3">Stay connected with family</h3>
-        <p class="text-muted">Add family members and follow their treatments from a single shared account.</p>
-      </div>
-      <div class="col-md-4">
-        <i class="bi bi-bell-fill how-it-works-icon"></i>
-        <h3 class="h5 mt-3">Never miss a reminder</h3>
-        <p class="text-muted">Get timely reminders so doses are never forgotten, for yourself or your loved ones.</p>
+  <section class="how-it-works py-5 section-gap">
+    <div class="container">
+      <h2 class="text-center mb-5">How it works</h2>
+      <div class="row text-center g-4">
+        <div class="col-md-4">
+          <i class="bi bi-capsule how-it-works-icon"></i>
+          <h3 class="h5 mt-3">Track your medications</h3>
+          <p class="text-muted">Keep a clear record of every medication, dosage and schedule for you and your family.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="bi bi-people-fill how-it-works-icon"></i>
+          <h3 class="h5 mt-3">Stay connected with family</h3>
+          <p class="text-muted">Add family members and follow their treatments from a single shared account.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="bi bi-bell-fill how-it-works-icon"></i>
+          <h3 class="h5 mt-3">Never miss a reminder</h3>
+          <p class="text-muted">Get timely reminders so doses are never forgotten, for yourself or your loved ones.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer text-center py-4">
-  <div class="container">
-    <p class="mb-0">&copy; <%= Date.current.year %> MediLink</p>
-  </div>
-</footer>
+  <footer class="footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; <%= Date.current.year %> MediLink</p>
+    </div>
+  </footer>
+<% end %>

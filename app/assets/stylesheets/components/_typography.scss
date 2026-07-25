@@ -1,0 +1,53 @@
+h1,
+h2 {
+  font-weight: 600;
+  color: $primary;
+}
+
+h2 {
+  font-size: 1.25rem; // 20px
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 1.75rem; // 28px
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: $primary;
+  text-align: center;
+}
+
+.card-time {
+  font-size: 2rem; // 32px
+  font-weight: 700;
+  color: $primary;
+}
+
+.card-name {
+  font-size: 1rem; // 16px
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: $text-primary;
+}
+
+.section-header {
+  font-size: .75rem; // 12px
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: $text-muted;
+}
+
+.section-gap {
+  margin-bottom: 3rem; // 48px
+}
+
+.gap-32 {
+  margin-bottom: 2rem; // 32px
+}
+
+.gap-40 {
+  margin-bottom: 2.5rem; // 40px
+}

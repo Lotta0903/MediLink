@@ -1,0 +1,163 @@
+.btn {
+  transition: color .15s, background-color .15s, box-shadow .15s;
+  letter-spacing: .01em;
+}
+
+.btn-primary {
+  box-shadow: 0 4px 14px $primary-glow;
+
+  &:hover,
+  &:focus {
+    background-color: $primary-dark;
+    border-color: $primary-dark;
+    box-shadow: 0 2px 8px $primary-glow;
+  }
+}
+
+.btn-outline-primary {
+  &:hover,
+  &:focus {
+    background-color: $primary;
+    border-color: $primary;
+    color: $card;
+    box-shadow: 0 2px 8px $primary-glow;
+  }
+}
+
+// Data-modifying action buttons (Add a medication, Follow, Edit profile, Mark as
+// taken) get a subtle lift on top of the color/shadow change above.
+.btn-action {
+  transition: color .15s, background-color .15s, box-shadow .15s, transform .15s;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px $primary-glow;
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px $primary-glow;
+  }
+}
+
+.btn.flash-success {
+  background: $mint !important;
+  border-color: $mint !important;
+  color: $card !important;
+  animation: takenPulse .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+@keyframes takenPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Muted icon links (edit/delete/unfollow) — color change on hover, no motion
+.icon-muted {
+  color: $text-muted;
+  font-size: 1.125rem; // 18px
+  transition: color .15s;
+}
+
+a:hover .icon-muted,
+button:hover .icon-muted {
+  color: $primary;
+}
+
+// Destructive icons (unfollow) hover to danger instead of primary
+a:hover .icon-muted.icon-danger-hover,
+button:hover .icon-muted.icon-danger-hover {
+  color: $rose;
+}
+
+.link-hover-underline {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// "Mark as taken" — mint green outline, signals the positive action up front
+.btn-mark-taken {
+  background-color: $card;
+  color: $mint;
+  border: 2px solid $mint;
+  transition: background-color .15s, color .15s, transform .1s;
+
+  &:hover {
+    background-color: $mint;
+    color: $card;
+  }
+
+  &:active {
+    transform: scale(.95);
+  }
+}
+
+// "Ask MediBot" pill — coral, matching the "Never miss a dose again" subtitle
+.btn-medibot-pill {
+  background-color: $coral-light;
+  color: $coral;
+  border: 1.5px solid $coral;
+  transition: background-color .15s, color .15s, transform .1s;
+
+  &:hover {
+    background-color: $coral;
+    color: $card;
+  }
+
+  &:active {
+    transform: scale(.95);
+  }
+}
+
+// "Add a medication" — white bg, blue border, flashes solid blue on click
+.btn-add-medication {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem; // 8px
+  background-color: $card;
+  color: $primary;
+  font-size: .875rem; // 14px
+  font-weight: 600;
+  letter-spacing: .03em;
+  padding: .625rem 1.5rem; // 10px 24px
+  border-radius: 999px;
+  border: 2px solid $primary;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15);
+  transition: background-color .15s, color .15s, box-shadow .15s, transform .1s;
+
+  &:hover {
+    background-color: $primary-light;
+    color: $primary;
+  }
+
+  &.clicked {
+    background: $primary !important;
+    color: $card !important;
+    transform: scale(.97);
+
+    .btn-add-medication-icon {
+      color: $card;
+    }
+  }
+}
+
+.btn-add-medication-icon {
+  font-size: 1rem; // 16px
+  line-height: 1;
+  color: $primary;
+  transition: color .1s;
+}

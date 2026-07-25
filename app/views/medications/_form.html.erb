@@ -1,10 +1,6 @@
 <%= simple_form_for medication do |f| %>
   <%= f.error_notification %>
 
-  <% if @family_member %>
-    <%= hidden_field_tag :family_member_id, @family_member.id %>
-  <% end %>
-
   <%= f.input :name, label: "Name" %>
   <%= f.input :dosage, label: "Dosage" %>
   <%= f.input :frequency, label: "Frequency" %>
