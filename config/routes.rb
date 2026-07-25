@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :medications, only: [:index, :new, :create, :edit, :update, :destroy] do
     resources :medication_logs, only: [:create]
+    collection do
+      get :calendar
+    end
   end
   resources :family_members, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :notifications, only: [:index, :destroy]

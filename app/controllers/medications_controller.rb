@@ -45,6 +45,10 @@ class MedicationsController < ApplicationController
     redirect_to medications_path(family_member_id: family_member_id), notice: "Medication deleted successfully."
   end
 
+  def calendar
+    @medications = Medication.all
+  end
+
   private
 
   def set_family_member
