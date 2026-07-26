@@ -127,6 +127,19 @@
     color: #333333;
     text-decoration: none;
   }
+  .delete-btn-row{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  .delete-btn{
+    text-decoration: none;
+    color: #333333;
+    width: fit-content;
+    padding: 4px 10px;
+    background-color: #e6e6e6;
+    border-radius: 4px;
+  }
 }
 
 .nav-link {
@@ -136,4 +149,10 @@
 .at-bottom {
   position: absolute;
   bottom: 0;
+}
+
+.chat-title-card{
+  display: grid;
+  grid-template-columns: 1fr auto;
+
 }

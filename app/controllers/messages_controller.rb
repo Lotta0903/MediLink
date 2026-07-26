@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
     @medication = @chat.medication
 
     @message = Message.new(message_params)
+
     @message.chat = @chat
     @message.role = set_role
 

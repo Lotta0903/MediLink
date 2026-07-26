@@ -18,4 +18,13 @@ class ChatsController < ApplicationController
     @message = Message.new
     @chats = @medication.chats
   end
+
+  def destroy
+    @chat = current_user.chats.find(params[:id])
+    @chat.destroy
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to chats_path }
+    end
+  end
 end
