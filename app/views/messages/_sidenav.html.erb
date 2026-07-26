@@ -18,8 +18,8 @@
     <li class="mb-2" id="<%= dom_id(chat) %>">
       <div data-controller="toggle">
         <%= link_to chat_path(chat), class: "chat-item chat-link" do %>
-            <div class="chat-title-card" id="<%= dom_id(chat, :title) %>">
-              <span class="title"><%= chat.title %></span>
+            <div class="chat-title-card">
+              <span class="title" id="<%= dom_id(chat, :title) %>"><%= chat.title %></span>
               <i class="fa-solid fa-ellipsis icon" data-action="click->toggle#icon"></i>
             </div>
         <% end %>
