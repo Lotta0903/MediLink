@@ -13,7 +13,7 @@ Follow.destroy_all
 User.destroy_all
 
 puts "Creating users..."
-alice  = User.create!(email: "alice@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "Alice", last_name: "Miller", photo_url: "https://randomuser.me/api/portraits/women/90.jpg")
+alice  = User.create!(email: "alice@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "Alice", last_name: "Miller", photo_url: "https://images.unsplash.com/photo-1719037108848-685e9e599827?w=400")
 david  = User.create!(email: "david@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "David", last_name: "Miller", photo_url: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200")
 sophie = User.create!(email: "sophie@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "Sophie", last_name: "Miller", photo_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200")
 marc   = User.create!(email: "marc@medilink.dev", password: "password123", password_confirmation: "password123", first_name: "Marc", last_name: "Dubois", photo_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200")

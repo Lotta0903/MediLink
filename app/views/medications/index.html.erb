@@ -5,7 +5,6 @@
 <div class="container mx-auto px-4 pb-4" style="max-width: 1140px;">
   <div class="text-center mb-4">
     <h1 class="page-title mt-4 mb-3">My Medications</h1>
-    <p class="mb-3" style="font-size: 1.25rem; font-weight: 500; color: #FB7185; font-style: italic; letter-spacing: .03em;">Never miss a dose again.</p>
   </div>
 
   <div class="text-center mb-5">
@@ -29,7 +28,6 @@
         <div class="row g-3 justify-content-center">
           <% upcoming.each do |medication| %>
             <%= render "medication_card", medication: medication %>
-            <%= button_to "medibot", medication_chats_path(medication)%>
           <% end %>
         </div>
       <% end %>

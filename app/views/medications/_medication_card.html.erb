@@ -35,7 +35,10 @@
                 data: { controller: "taken-button", action: "click->taken-button#flash" } %>
         <% end %>
 
-        <%= link_to medication_path(medication), class: "btn btn-medibot-pill rounded-pill text-uppercase text-decoration-none d-inline-flex align-items-center justify-content-center", style: "padding: .5rem 1rem; font-size: .6875rem; font-weight: 600; letter-spacing: .03em; white-space: nowrap; text-align: center;" do %>
+        <%= button_to medication_chats_path(medication),
+              method: :post,
+              class: "btn btn-medibot-pill rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center",
+              style: "padding: .5rem 1rem; font-size: .6875rem; font-weight: 600; letter-spacing: .03em; white-space: nowrap; text-align: center;" do %>
           💬 Ask MediBot
         <% end %>
       </div>

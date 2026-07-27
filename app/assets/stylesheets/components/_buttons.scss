@@ -105,15 +105,15 @@ button:hover .icon-muted.icon-danger-hover {
   }
 }
 
-// "Ask MediBot" pill — coral, matching the "Never miss a dose again" subtitle
+// "Ask MediBot" pill — blue, matching the app's primary color
 .btn-medibot-pill {
-  background-color: $coral-light;
-  color: $coral;
-  border: 1.5px solid $coral;
+  background-color: $primary-light;
+  color: $primary;
+  border: 1.5px solid $primary;
   transition: background-color .15s, color .15s, transform .1s;
 
   &:hover {
-    background-color: $coral;
+    background-color: $primary;
     color: $card;
   }
 
@@ -133,15 +133,14 @@ button:hover .icon-muted.icon-danger-hover {
   font-size: .875rem; // 14px
   font-weight: 600;
   letter-spacing: .03em;
-  padding: .625rem 1.5rem; // 10px 24px
+  padding: .75rem 2rem; // 12px 32px
   border-radius: 999px;
   border: 2px solid $primary;
-  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15);
   transition: background-color .15s, color .15s, box-shadow .15s, transform .1s;
 
   &:hover {
-    background-color: $primary-light;
-    color: $primary;
+    background-color: $primary;
+    color: $card;
   }
 
   &.clicked {
