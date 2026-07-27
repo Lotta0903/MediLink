@@ -1,0 +1,154 @@
+@media (max-width: 1600px) {
+  .calendar-container {
+    width: 500px;
+  }
+
+  .calendar-dates li.highlight {
+    width: calc(50% / 7);
+    height: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar-container {
+    width: 400px;
+  }
+
+  .calendar-dates li.highlight {
+    width: calc(65% / 7);
+    height: 30px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+.calendar-container {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.calendar-container header {
+  display: flex;
+  align-items: center;
+  padding: 20px 40px 0px 40px;
+  justify-content: space-between;
+}
+
+header .calendar-navigation {
+  width: 30px;
+  height: 30px;
+  display: flex;
+}
+
+header .calendar-navigation span {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  user-select: none;
+  color: $primary;
+  font-size: 2.8rem;
+
+  &:hover {
+    color: white;
+    background-color: $primary;
+    transition: .15s;
+  }
+}
+
+.calendar-navigation span:last-child {
+  margin-right: -8px;
+}
+
+header .calendar-current-date {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-bottom: 0px;
+}
+
+.calendar-body {
+  padding: 10px 25px 10px 0px;
+}
+
+.calendar-body ul {
+  list-style: none;
+  flex-wrap: wrap;
+  display: flex;
+  text-align: center;
+}
+
+.calendar-body .calendar-dates {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.calendar-body li {
+  width: calc(100% / 7);
+  height: 30px;
+  line-height: 30px;
+  font-size: 0.9rem;
+  color: #000000;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.calendar-body .calendar-weekdays li {
+  cursor: default;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.calendar-dates li.inactive {
+  color: #aaa;
+  cursor: default;
+}
+
+.calendar-dates li.active {
+  color: #000000;
+}
+
+.calendar-dates li::before {
+  position: absolute;
+  content: "";
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.calendar-dates li.active::before {
+  border: 3px solid $primary;
+  border-radius: 50%;
+}
+
+.calendar-dates li.active.highlight::before {
+  border: none;
+}
+
+.calendar-dates li:not(.active):not(.inactive):not(.highlight):hover::before {
+  background: $primary;
+  transition: .15s;
+}
+
+.calendar-dates li.highlight {
+  background: $primary;
+  color: white;
+  border: 3px solid $primary-dark;
+  border-radius: 50%;
+  position: relative;
+  z-index: 10;
+  line-height: 30px;
+  text-align: center;
+}

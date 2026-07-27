@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h1 class="page-title mt-4 mb-3"> Calendar </h1>
+
+  <div data-controller="calendar" class="calendar-container border border-primary mx-auto">
+    <header class="calendar-header">
+      <div class="calendar-navigation">
+        <span id="calendar-prev" class="material-symbols-rounded">
+          <
+        </span>
+      </div>
+      <p class="calendar-current-date"></p>
+      <div class="calendar-navigation">
+        <span id="calendar-next" class="material-symbols-rounded">
+          >
+        </span>
+      </div>
+    </header>
+    <div class="calendar-body">
+      <ul class="calendar-weekdays">
+        <li>Sun</li>
+        <li>Mon</li>
+        <li>Tue</li>
+        <li>Wed</li>
+        <li>Thu</li>
+        <li>Fri</li>
+        <li>Sat</li>
+      </ul>
+      <ul class="calendar-dates"></ul>
+    </div>
+  </div>
+
+  <div class="card shadow bg-light border border-primary rounded-4 col-9 col-lg-6 mx-auto my-4">
+    <div class="card-body">
+      <% @medications.each do |medication| %>
+        <h3><%= medication.start_date.strftime("%B") %> <%= medication.start_date.day %>, <%= medication.start_date.year %></h3>
+        <p class="mb-0"><%= medication.name.capitalize %> (<%= medication.dosage %>) <br> <%= medication.reminder_time %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

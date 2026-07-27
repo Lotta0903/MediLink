@@ -7,6 +7,10 @@ class MedicationsController < ApplicationController
     @medications = current_user.medications
   end
 
+  def calendar
+    @medications = current_user.medications
+  end
+
   def new
     @medication = Medication.new
   end
