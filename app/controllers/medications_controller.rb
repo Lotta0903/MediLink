@@ -7,6 +7,10 @@ class MedicationsController < ApplicationController
     @medications = current_user.medications
   end
 
+  def calendar
+    @medications = current_user.medications
+  end
+
   def new
     @medication = Medication.new
   end
@@ -40,10 +44,6 @@ class MedicationsController < ApplicationController
   def destroy
     @medication.destroy
     redirect_to medications_path, notice: "Medication deleted successfully."
-  end
-
-  def calendar
-    @medications = Medication.all
   end
 
   private

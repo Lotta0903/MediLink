@@ -1,6 +1,31 @@
+@media (max-width: 1600px) {
+  .calendar-container {
+    width: 500px;
+  }
+
+  .calendar-dates li.highlight {
+    width: calc(50% / 7);
+    height: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar-container {
+    width: 400px;
+  }
+
+  .calendar-dates li.highlight {
+    width: calc(65% / 7);
+    height: 30px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
 .calendar-container {
-  background: #fff7f7;
-  width: 500px;
+  background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
@@ -8,42 +33,46 @@
 .calendar-container header {
   display: flex;
   align-items: center;
-  padding: 15px 20px 8px;
+  padding: 20px 40px 0px 40px;
   justify-content: space-between;
 }
 
 header .calendar-navigation {
+  width: 30px;
+  height: 30px;
   display: flex;
 }
 
 header .calendar-navigation span {
-  height: 30px;
   width: 30px;
-  margin: 0 2px;
+  height: 30px;
   cursor: pointer;
   text-align: center;
   line-height: 30px;
   border-radius: 50%;
   user-select: none;
-  color: #aeabab;
-  font-size: 1.4rem;
+  color: $primary;
+  font-size: 2.8rem;
+
+  &:hover {
+    color: white;
+    background-color: $primary;
+    transition: .15s;
+  }
 }
 
 .calendar-navigation span:last-child {
   margin-right: -8px;
 }
 
-header .calendar-navigation span:hover {
-  background: #f2f2f2;
-}
-
 header .calendar-current-date {
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  margin-bottom: 0px;
 }
 
 .calendar-body {
-  padding: 10px;
+  padding: 10px 25px 10px 0px;
 }
 
 .calendar-body ul {
@@ -63,7 +92,7 @@ header .calendar-current-date {
   height: 30px;
   line-height: 30px;
   font-size: 0.9rem;
-  color: #414141;
+  color: #000000;
   margin-top: 20px;
   position: relative;
   z-index: 1;
@@ -84,7 +113,7 @@ header .calendar-current-date {
 }
 
 .calendar-dates li.active {
-  color: #fff;
+  color: #000000;
 }
 
 .calendar-dates li::before {
@@ -100,23 +129,26 @@ header .calendar-current-date {
 }
 
 .calendar-dates li.active::before {
-  background: #6964ff;
-  border-radius: 30%;
+  border: 3px solid $primary;
+  border-radius: 50%;
 }
 
-.calendar-dates li:not(.active):not(.highlight):hover::before {
-  background: #858484;
+.calendar-dates li.active.highlight::before {
+  border: none;
+}
+
+.calendar-dates li:not(.active):not(.inactive):not(.highlight):hover::before {
+  background: $primary;
+  transition: .15s;
 }
 
 .calendar-dates li.highlight {
-  background: #6964ff !important;
+  background: $primary;
   color: white;
-  border-radius: 30%;
-  border: 2px dotted #38f3b1 !important;
+  border: 3px solid $primary-dark;
+  border-radius: 50%;
   position: relative;
   z-index: 10;
-  height: 30px;
   line-height: 30px;
   text-align: center;
-  width: calc(100% / 7);
 }

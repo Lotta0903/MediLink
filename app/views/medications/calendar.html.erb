@@ -1,17 +1,19 @@
 <div class="container mt-4">
-  <h1> Calendar </h1>
+  <h1 class="page-title mt-4 mb-3"> Calendar </h1>
 
-  <div class="calendar-container border border-primary mx-auto">
+  <div data-controller="calendar" class="calendar-container border border-primary mx-auto">
     <header class="calendar-header">
+      <div class="calendar-navigation">
+        <span id="calendar-prev" class="material-symbols-rounded">
+          <
+        </span>
+      </div>
       <p class="calendar-current-date"></p>
-        <div class="calendar-navigation">
-          <span id="calendar-prev" class="material-symbols-rounded">
-            <
-          </span>
-          <span id="calendar-next" class="material-symbols-rounded">
-            >
-          </span>
-        </div>
+      <div class="calendar-navigation">
+        <span id="calendar-next" class="material-symbols-rounded">
+          >
+        </span>
+      </div>
     </header>
     <div class="calendar-body">
       <ul class="calendar-weekdays">
@@ -27,7 +29,7 @@
     </div>
   </div>
 
-  <div class="card shadow bg-light border border-primary rounded-4 col-9 col-lg-6 mx-auto mt-4">
+  <div class="card shadow bg-light border border-primary rounded-4 col-9 col-lg-6 mx-auto my-4">
     <div class="card-body">
       <% @medications.each do |medication| %>
         <h3><%= medication.start_date.strftime("%B") %> <%= medication.start_date.day %>, <%= medication.start_date.year %></h3>
@@ -36,17 +38,3 @@
     </div>
   </div>
 </div>
-
-<!--
-  <h2 class="text-center"><%= Time.now.strftime("%B, %Y") %></h2>
-  <hr class="border border-primary col-12 col-lg-9 mx-auto">
-  <div class="d-flex justify-content-between col-12 col-lg-9 mx-auto">
-    <h2 class="text-muted"> Monday </h2>
-    <h2 class="text-muted"> Tuesday </h2>
-    <h2 class="text-muted"> Wednesday </h2>
-    <h2 class="text-muted"> Thursday </h2>
-    <h2 class="text-muted"> Friday </h2>
-    <h2 class="text-muted"> Saturday </h2>
-    <h2 class="text-muted"> Sunday </h2>
-  </div>
-  -->

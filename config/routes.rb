@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resources :medications, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    collection do
+      get :calendar
+    end
     resources :chats, only: [:create]
   end
 
@@ -13,10 +16,8 @@ Rails.application.routes.draw do
 
   resources :medications, only: [:index, :new, :create, :edit, :update, :destroy] do
     resources :medication_logs, only: [:create]
-    collection do
-      get :calendar
-    end
   end
+
   resources :follows, only: [:index, :create, :destroy]
   resources :notifications, only: [:index, :destroy]
   resource :profile, controller: "users", only: [:show]
