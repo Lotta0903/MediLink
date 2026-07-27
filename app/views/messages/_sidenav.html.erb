@@ -31,6 +31,13 @@
             <% end %>
           </div>
         </div>
+    <% chats.each do |chat| %>
+      <li class="mb-2">
+        <%= link_to chat_path(chat), class: "chat-item chat-link #{"active" if defined?(@chat) && @chat == chat}" do %>
+          <span id="<%= dom_id(chat, :title) %>">
+            <%= chat.title %>
+          </span>
+      <% end %>
 
       </li>
     <% end %>
