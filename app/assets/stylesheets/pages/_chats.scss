@@ -106,12 +106,11 @@
   overflow-y: auto;
   color: #E8F7FB;
 
-
   #new-chat {
     padding-top: 10px;
   }
 
-  .new-chat-btn{
+  .new-chat-btn {
     border: none;
     background-color: #0F5C73;
     color: #E8F7FB;
@@ -136,35 +135,34 @@
     color: #E8F7FB;
     text-decoration: none;
   }
-  .delete-btn-row{
+
+  .delete-btn-row {
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
   }
-  .delete-btn{
+
+  .delete-btn {
     text-decoration: none;
     color: #333333;
     width: fit-content;
     padding: 4px 10px;
     background-color: #e6e6e6;
     border-radius: 4px;
+  }
 
   .nav-link {
     color: #E8F7FB;
+    margin-left: 15px;
   }
-}
 
-.nav-link {
-  margin-left: 15px;
-}
+  .at-bottom {
+    position: absolute;
+    bottom: 0;
+  }
 
-.at-bottom {
-  position: absolute;
-  bottom: 0;
-}
-
-.chat-title-card{
-  display: grid;
-  grid-template-columns: 1fr auto;
-
+  .chat-title-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
 }
