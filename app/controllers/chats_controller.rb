@@ -17,6 +17,7 @@ class ChatsController < ApplicationController
     @medication = @chat.medication
     @message = Message.new
     @chats = @medication.chats
+    @user = current_user
   end
 
   def destroy
