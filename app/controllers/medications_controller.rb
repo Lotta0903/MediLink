@@ -12,7 +12,7 @@ class MedicationsController < ApplicationController
   end
 
   def new
-    @medication = Medication.new
+    @medication = Medication.new(start_date: Date.today, end_date: Date.today + 30.days)
   end
 
   def show
@@ -57,6 +57,6 @@ class MedicationsController < ApplicationController
   end
 
   def medication_params
-    params.require(:medication).permit(:name, :dosage, :frequency, :start_date, :end_date, :reminder_time)
+    params.require(:medication).permit(:name, :dosage, :frequency, :dose_frequency, :start_date, :end_date, :reminder_time)
   end
 end

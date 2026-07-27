@@ -128,25 +128,23 @@ button:hover .icon-muted.icon-danger-hover {
   align-items: center;
   justify-content: center;
   gap: .5rem; // 8px
-  min-width: 280px;
   background-color: $card;
-  color: $coral;
+  color: $primary;
   font-size: .875rem; // 14px
   font-weight: 600;
   letter-spacing: .03em;
-  padding: .625rem 2.5rem; // 10px 40px
+  padding: .75rem 2rem; // 12px 32px
   border-radius: 999px;
-  border: 2px solid $coral;
-  box-shadow: 0 2px 8px rgba(251, 113, 133, 0.15);
+  border: 2px solid $primary;
   transition: background-color .15s, color .15s, box-shadow .15s, transform .1s;
 
   &:hover {
-    background-color: $coral-light;
-    color: $coral;
+    background-color: $primary;
+    color: $card;
   }
 
   &.clicked {
-    background: $coral !important;
+    background: $primary !important;
     color: $card !important;
     transform: scale(.97);
 
@@ -159,6 +157,6 @@ button:hover .icon-muted.icon-danger-hover {
 .btn-add-medication-icon {
   font-size: 1rem; // 16px
   line-height: 1;
-  color: $coral;
+  color: $primary;
   transition: color .1s;
 }
