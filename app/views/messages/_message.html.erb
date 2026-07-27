@@ -7,8 +7,8 @@
 
       <% elsif message.role == "assistant" %>
         <div class="d-flex justify-content-start mb-5" id="<%= dom_id(message) %>">
-          <div class="bg-secondary-subtle px-3  py-2 rounded-pill">
-            <%= message.content.present? ? (message.content) : "..." %>
+          <div>
+            <%= message.content.present? ? raw(render_markdown(message.content)) : "..." %>
           </div>
         </div>
     <% end %>

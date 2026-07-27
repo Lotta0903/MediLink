@@ -25,7 +25,12 @@
 
         <div id="new_message_container" class="mt-4", data-toggle-target="input", data-action="submit->toggle#submit">
           <div class="greeting  <%= "d-none" if @chat.messages.any? %>" data-toggle-target="hide">
+
+            <% if @user.first_name.present?%>
+            <h1 id="chat_title"> Hey <%= @user.first_name %>, how can I <span id="span">help you today</span>🩺</h1>
+            <% else %>
             <h1 id="chat_title"> How can I <span id="span">help you today</span>🩺</h1>
+            <% end %>
             <p>Your AI assistant for medication guidance</p>
           </div>
           <%= render "messages/form", chat: @chat%>

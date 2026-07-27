@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="toggle"
 export default class extends Controller {
-  static targets = ["show", "hideable", "hide", "input"];
+  static targets = ["show", "hideable", "hide", "input", "display"];
   connect() {
     console.log("toggle controller connected");
   }
@@ -18,9 +18,24 @@ export default class extends Controller {
     }
   }
 
-  submit(event) {
+  submit() {
     console.log("Called submit");
     this.hideTarget.classList.add("d-none")
     this.inputTarget.classList.add("at-bottom")
+  }
+
+  icon(event) {
+    console.log("icon clicked")
+    event.preventDefault()
+    this.displayTarget.classList.remove("d-none")
+    document.addEventListener("click", this.outsideClick)
+  }
+
+   outsideClick = (event) => {
+    if (this.element.contains(event.target)) return
+
+    this.displayTarget.classList.add("d-none")
+
+    document.removeEventListener("click", this.outsideClick)
   }
 }

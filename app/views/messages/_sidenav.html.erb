@@ -14,16 +14,27 @@
       </div>
     </li>
 
-    <% chats.each do |chat| %>
-      <li class="mb-2">
+   <% chats.each do |chat| %>
+    <li class="mb-2" id="<%= dom_id(chat) %>">
+      <div data-controller="toggle">
         <%= link_to chat_path(chat), class: "chat-item chat-link" do %>
-          <span id="<%= dom_id(chat, :title) %>">
-            <%= chat.title %>
-          </span>
-      <% end %>
+            <div class="chat-title-card">
+              <span class="title" id="<%= dom_id(chat, :title) %>"><%= chat.title %></span>
+              <i class="fa-solid fa-ellipsis icon" data-action="click->toggle#icon"></i>
+            </div>
+        <% end %>
+
+          <div class="delete-btn-row">
+            <%= link_to chat_path(chat), data: { turbo_method: :delete,  toggle_target: "display" }, class:"delete-btn d-none" do %>
+            <i class="fa-solid fa-trash-can"></i>
+            Delete
+            <% end %>
+          </div>
+        </div>
 
       </li>
     <% end %>
+
 
   </ul>
 <% else %>
