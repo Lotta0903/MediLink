@@ -1,7 +1,7 @@
 <% if chats.any? %>
   <ul class="list-unstyled">
     <li>
-      <%= link_to "#", class: "nav-link", data: { action: "click->toggle#call" } do %>
+      <%= link_to "#", class: "close-btn", data: { action: "click->chatbot#closesideNav" } do %>
         <i class="fa-solid fa-bars"></i>
       <% end %>
     </li>
@@ -16,16 +16,16 @@
 
     <% chats.each do |chat| %>
       <li class="mb-2" id="<%= dom_id(chat) %>">
-        <div data-controller="toggle">
+        <div data-controller="chatbot">
           <%= link_to chat_path(chat), class: "chat-item chat-link #{"active" if defined?(@chat) && @chat == chat}" do %>
             <div class="chat-title-card">
               <span class="title" id="<%= dom_id(chat, :title) %>"><%= chat.title %></span>
-              <i class="fa-solid fa-ellipsis icon" data-action="click->toggle#icon"></i>
+              <i class="fa-solid fa-ellipsis icon" data-action="click->chatbot#icon"></i>
             </div>
           <% end %>
 
           <div class="delete-btn-row">
-            <%= link_to chat_path(chat), data: { turbo_method: :delete, toggle_target: "display" }, class: "delete-btn d-none" do %>
+            <%= link_to chat_path(chat), data: { turbo_method: :delete, chatbot_target: "deleteButton" }, class: "delete-btn d-none" do %>
               <i class="fa-solid fa-trash-can"></i>
               Delete
             <% end %>
