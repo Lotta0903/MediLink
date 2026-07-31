@@ -1,13 +1,13 @@
     <% if message.role == "user" %>
       <div class="d-flex justify-content-end mb-4">
-        <div class="rounded-pill" style="background-color: #D6F0F8; color: #1A3A44; padding: .625rem 1.25rem; max-width: 70%;">
+        <div class="user-chat-bubble rounded-pill" >
           <%= message.content %>
         </div>
       </div>
 
       <% elsif message.role == "assistant" %>
         <div class="d-flex justify-content-start mb-4" id="<%= dom_id(message) %>">
-          <div class= "#1A3A44; padding: .625rem 1.25rem; max-width: 70%; box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);">
+          <div>
             <%= message.content.present? ? raw(render_markdown(message.content)) : "..." %>
           </div>
         </div>
