@@ -73,6 +73,10 @@ label {
 }
 
 .delete-account-link {
+  color: $rose;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
   transition: filter 0.15s ease;
 
   &:hover {
@@ -132,4 +136,39 @@ label {
 
 .date-field-centered {
   text-align: center;
+}
+
+// Edit profile page
+
+.edit-profile-container {
+  max-width: 900px;
+}
+
+.edit-profile-inner {
+  max-width: 480px;
+  text-align: center;
+  padding-top: .5rem;
+}
+
+.edit-profile-hint {
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-muted;
+  text-align: center;
+}
+
+.edit-profile-reconfirmation {
+  font-size: 13px;
+}
+
+.edit-profile-submit {
+  padding: 12px 32px;
+}
+
+.edit-profile-danger-zone {
+  border-top: 1px solid $border;
+
+  &__note {
+    font-size: 13px;
+  }
 }
