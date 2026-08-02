@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <% end %>
 
-<div class="container mx-auto px-4 pb-5" style="max-width: 720px;">
+<div class="notifications-container container mx-auto px-4 pb-5">
   <div class="text-center mb-5 position-relative">
     <h1 class="page-title mt-4 mb-2">Notifications 🔔</h1>
     <% if @has_unread %>
@@ -11,10 +11,10 @@
   </div>
 
   <% if @notifications.empty? %>
-    <div class="text-center py-5">
-      <p class="mb-2" style="font-size: 2rem;">🔔</p>
-      <p class="mb-1" style="font-size: 1.125rem; font-weight: 600; color: #0F172A;">No notifications yet</p>
-      <p class="text-muted mb-0" style="font-size: .9375rem;">You'll see updates here when your circle takes their medications.</p>
+    <div class="notifications-empty text-center">
+      <p class="notifications-empty__icon mb-2">🔔</p>
+      <p class="notifications-empty__title mb-1">No notifications yet</p>
+      <p class="notifications-empty__subtitle text-muted mb-0">You'll see updates here when your circle takes their medications.</p>
     </div>
   <% else %>
     <% @notifications_by_day.each do |date, day_notifications| %>
@@ -25,27 +25,27 @@
                  else
                    date.strftime("%B %-d")
                  end %>
-      <h2 class="mb-3" style="font-weight: 600; color: #0F172A; text-transform: uppercase;"><%= label %></h2>
+      <h2 class="notifications-day-title mb-3"><%= label %></h2>
 
       <% day_notifications.each do |notification| %>
-        <div class="d-flex align-items-center gap-3 mb-3" style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 1rem; padding: 1rem 1.25rem; box-shadow: 0 1px 6px rgba(15, 23, 42, 0.04);">
+        <div class="notification-card d-flex align-items-center gap-3 mb-3">
           <%= render "shared/user_avatar", user: notification.medication.user, size: 48 %>
 
           <div class="flex-grow-1">
-            <p class="mb-0" style="font-size: .9375rem; font-weight: 600; color: #0F172A;"><%= notification.message %></p>
-            <p class="text-muted mb-0" style="font-size: .8125rem; font-weight: 500;">
+            <p class="notification-card__message mb-0"><%= notification.message %></p>
+            <p class="notification-card__meta text-muted mb-0">
               <%= notification.status == :taken ? "Taken at" : "Missed at" %> <%= notification.medication.reminder_time %>
             </p>
           </div>
 
           <% if notification.status == :taken %>
-            <span class="badge badge-success-soft rounded-pill" style="font-size: .75rem; font-weight: 600; padding: .375rem .875rem;">✓ Viewed</span>
+            <span class="notification-card__badge badge badge-success-soft rounded-pill">✓ Viewed</span>
           <% else %>
-            <span class="badge badge-danger-soft rounded-pill" style="font-size: .75rem; font-weight: 600; padding: .375rem .875rem;">Missed</span>
+            <span class="notification-card__badge badge badge-danger-soft rounded-pill">Missed</span>
           <% end %>
 
           <%= button_to notification_path(notification), method: :delete, class: "btn btn-link p-0 border-0", form: { data: { turbo_confirm: "Delete this notification?" } } do %>
-            <i class="bi bi-trash icon-muted" style="font-size: .875rem;"></i>
+            <i class="notification-card__delete-icon bi bi-trash icon-muted"></i>
           <% end %>
         </div>
       <% end %>
