@@ -1,0 +1,59 @@
+// Notifications page
+
+.notifications-container {
+  max-width: 720px;
+}
+
+.notifications-empty {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  &__icon {
+    font-size: 2rem;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  &__subtitle {
+    font-size: .9375rem;
+  }
+}
+
+.notifications-day-title {
+  font-weight: 600;
+  color: $text-primary;
+  text-transform: uppercase;
+}
+
+.notification-card {
+  background-color: $card;
+  border: 1px solid $border;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 6px rgba(15, 23, 42, 0.04);
+
+  &__message {
+    font-size: .9375rem;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  &__meta {
+    font-size: .8125rem;
+    font-weight: 500;
+  }
+
+  &__badge {
+    font-size: .75rem;
+    font-weight: 600;
+    padding: .375rem .875rem;
+  }
+
+  &__delete-icon {
+    font-size: .875rem;
+  }
+}
