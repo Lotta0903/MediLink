@@ -1,14 +1,17 @@
-<div class="medication-card-vertical mx-auto position-relative">
+<div class="medication-card-vertical mx-auto position-relative"
+     data-action="click->medication-modal#open"
+     data-medication-id="<%= medication.id %>">
 
   <div class="medication-card-actions-vertical position-absolute d-flex">
-    <%= link_to edit_medication_path(medication) do %>
+    <%= link_to edit_medication_path(medication), data: { action: "click->medication-modal#stop" } do %>
       <i class="bi bi-pencil icon-muted medication-action-icon"></i>
     <% end %>
 
     <%= button_to medication_path(medication),
           method: :delete,
           class: "btn btn-link p-0 border-0 medication-delete-button",
-          form: { data: { turbo_confirm: "Are you sure you want to delete this medication?" } } do %>
+          form: { data: { turbo_confirm: "Are you sure you want to delete this medication?" } },
+          data: { action: "click->medication-modal#stop" } do %>
       <i class="bi bi-trash icon-muted medication-action-icon"></i>
     <% end %>
   </div>
@@ -39,12 +42,13 @@
               medication_medication_logs_path(medication),
               method: :post,
               class: "btn btn-mark-taken btn-action rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center medication-action-button",
-              data: { controller: "taken-button", action: "click->taken-button#flash" } %>
+              data: { controller: "taken-button", action: "click->taken-button#flash click->medication-modal#stop" } %>
       <% end %>
 
       <%= button_to medication_chats_path(medication),
             method: :post,
-            class: "btn btn-medibot-pill rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center medication-action-button" do %>
+            class: "btn btn-medibot-pill rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center medication-action-button",
+            data: { action: "click->medication-modal#stop" } do %>
         💬 Ask MediBot
       <% end %>
 

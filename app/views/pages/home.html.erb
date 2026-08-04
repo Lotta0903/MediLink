@@ -52,10 +52,11 @@
       <% if @today_medications.empty? %>
         <p class="text-muted text-center">No medications scheduled.</p>
       <% else %>
-        <div class="horizontal-scroll-wrapper">
+        <div class="horizontal-scroll-wrapper" data-controller="medication-modal">
           <% @today_medications.each do |medication| %>
-            <%= render "medication_summary_card", medication: medication %>
+            <%= render "medications/medication_summary_card", medication: medication %>
           <% end %>
+          <%= render "medications/medication_modal", medications: @today_medications %>
         </div>
       <% end %>
     </div>

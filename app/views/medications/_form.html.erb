@@ -16,6 +16,8 @@
 
   name_in_presets = medication_names.include?(medication.name)
   selected_days = medication.frequency.to_s.split(",").map(&:strip)
+
+  section_label_style = "font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #64748B; margin-top: 24px; margin-bottom: 12px;"
 %>
 
 <div class="medication-form-container container">
@@ -26,6 +28,8 @@
 
     <%= simple_form_for medication, wrapper: false do |f| %>
       <%= f.error_notification %>
+
+      <p class="text-center" style="<%= section_label_style %> margin-top: 0;">What</p>
 
       <div class="mb-4" data-controller="custom-medication">
         <label>Medication name</label>
@@ -51,6 +55,8 @@
         <%= f.text_field :dosage, class: "form-control", placeholder: "e.g. 500mg" %>
       </div>
 
+      <p class="text-center" style="<%= section_label_style %>">How</p>
+
       <div class="mb-4" data-controller="frequency-days">
         <label class="form-label-centered mb-3">Frequency</label>
         <div class="form-days-row d-flex flex-wrap justify-content-center">
@@ -74,6 +80,20 @@
         <label class="form-label-centered mb-2">How often?</label>
         <%= f.text_field :dose_frequency, class: "form-control", placeholder: "e.g. once a day, every 8 hours" %>
       </div>
+
+      <div class="mb-4">
+        <label>How to take</label>
+        <%= f.select :intake_instructions,
+              ["Any time", "Before meals", "After meals", "On empty stomach", "Before bed", "With food"],
+              { include_blank: false }, class: "form-select" %>
+      </div>
+
+      <div class="mb-4">
+        <label>With food</label>
+        <%= f.select :with_food, ["No", "Yes", "Optional"], { include_blank: false }, class: "form-select" %>
+      </div>
+
+      <p class="text-center" style="<%= section_label_style %>">When</p>
 
       <div class="mb-4" data-controller="time-picker">
         <label>Reminder time</label>
@@ -103,6 +123,13 @@
           <label class="form-label-centered">End date</label>
           <%= f.date_field :end_date, class: "form-control date-field-centered" %>
         </div>
+      </div>
+
+      <p class="text-center" style="<%= section_label_style %>">Notes</p>
+
+      <div class="mb-4">
+        <label>Notes (optional)</label>
+        <%= f.text_area :notes, rows: 3, class: "form-control", placeholder: "Instructions from your doctor, side effects to watch, any reminders..." %>
       </div>
 
       <%= button_tag type: "submit", class: "btn-add-medication text-decoration-none mt-4", data: { controller: "add-button", action: "mousedown->add-button#pulse" } do %>
