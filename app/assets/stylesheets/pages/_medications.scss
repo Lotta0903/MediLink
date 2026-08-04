@@ -20,3 +20,119 @@
   font-weight: 600;
   letter-spacing: .02em;
 }
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.medication-modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  padding: 1rem;
+  background-color: rgba(15, 23, 42, .5);
+  backdrop-filter: blur(12px);
+  z-index: 1050;
+}
+
+.medication-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 640px;
+  overflow-y: auto;
+  background-color: #FFFFFF;
+  border-radius: 28px;
+  padding: 48px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, .15);
+  text-align: left;
+}
+
+.medication-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: $text-muted;
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .15s;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.medication-modal-name {
+  font-size: 26px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+.medication-modal-section {
+  margin-bottom: 20px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.medication-modal-section-heading {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: $primary;
+}
+
+.medication-modal-row {
+  padding: 16px 0;
+  border-bottom: 1px solid #F1F5F9;
+  line-height: 1.6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &-label {
+    font-size: 17px;
+    font-weight: 500;
+    color: #334155;
+  }
+
+  &-value {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0F172A;
+    text-align: right;
+  }
+}
+
+.medication-modal-buttons {
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.medication-modal-pill-btn {
+  padding: 10px;
+  font-size: .9375rem;
+  font-weight: 600;
+
+  &--delete {
+    background-color: #FFFFFF;
+    color: $rose;
+    border: 1.5px solid $rose;
+
+    &:hover {
+      background-color: $rose;
+      color: #FFFFFF;
+    }
+  }
+}

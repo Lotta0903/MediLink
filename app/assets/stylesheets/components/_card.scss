@@ -29,10 +29,10 @@
   border-radius: 1.25rem;
   padding: 1rem;
   box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08);
-  transition: transform .15s cubic-bezier(.4, 0, .2, 1), box-shadow .15s ease;
+  transition: transform .2s cubic-bezier(.4, 0, .2, 1), box-shadow .2s ease;
 
   &:hover {
-    box-shadow: 0 6px 24px rgba(14, 165, 233, 0.12);
+    box-shadow: 0 10px 32px rgba(14, 165, 233, 0.16);
     transform: translateY(-2px);
   }
 
@@ -40,18 +40,16 @@
     transform: scale(.98);
   }
 
-  .medication-card-actions {
-    top: .75rem;
-    right: .75rem;
-    gap: .5rem;
-
-    i {
-      font-size: .875rem;
-    }
-  }
-
   .medication-card-body {
     gap: .5rem;
+    cursor: pointer;
+  }
+
+  .medication-card-chevron {
+    top: 50%;
+    right: .25rem;
+    transform: translateY(-50%);
+    color: $text-muted;
   }
 
   .medication-card-time {

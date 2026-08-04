@@ -20,33 +20,37 @@
     <% upcoming = @medications.reject(&:taken_today?) %>
     <% taken_today = @medications.select(&:taken_today?) %>
 
-    <section class="mb-4">
-      <h2 class="medications-section-title mb-3">Upcoming ⏰</h2>
-      <% if upcoming.empty? %>
-        <p class="text-muted text-center">Nothing left to take today.</p>
-      <% else %>
-        <div class="row g-3 justify-content-center">
-          <% upcoming.each do |medication| %>
-            <%= render "medication_card", medication: medication %>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
+    <div data-controller="medication-modal">
+      <section class="mb-4">
+        <h2 class="medications-section-title mb-3">Upcoming ⏰</h2>
+        <% if upcoming.empty? %>
+          <p class="text-muted text-center">Nothing left to take today.</p>
+        <% else %>
+          <div class="row g-3 justify-content-center">
+            <% upcoming.each do |medication| %>
+              <%= render "medication_card", medication: medication %>
+            <% end %>
+          </div>
+        <% end %>
+      </section>
 
-    <hr class="medications-divider">
+      <hr class="medications-divider">
 
-    <section class="mt-4">
-      <h2 class="medications-section-title mb-3">Taken today ✓</h2>
-      <% if taken_today.empty? %>
-        <p class="text-muted text-center">No medications taken yet today.</p>
-      <% else %>
-        <div class="row g-3 justify-content-center">
-          <% taken_today.each do |medication| %>
-            <%= render "medication_card", medication: medication %>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
+      <section class="mt-4">
+        <h2 class="medications-section-title mb-3">Taken today ✓</h2>
+        <% if taken_today.empty? %>
+          <p class="text-muted text-center">No medications taken yet today.</p>
+        <% else %>
+          <div class="row g-3 justify-content-center">
+            <% taken_today.each do |medication| %>
+              <%= render "medication_card", medication: medication %>
+            <% end %>
+          </div>
+        <% end %>
+      </section>
+
+      <%= render "medication_modal", medications: @medications %>
+    </div>
 
     <hr class="medications-divider">
 
