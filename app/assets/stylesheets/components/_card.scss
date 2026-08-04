@@ -1,9 +1,9 @@
 .app-card {
   background-color: $card;
   border: 1px solid $border;
-  border-radius: 1.5rem; // 24px
+  border-radius: 1.5rem;
   box-shadow: 0 8px 32px rgba(15, 23, 42, .06);
-  padding: 2rem; // 32px
+  padding: 2rem;
 
   &--tinted {
     background-color: $primary-light;
@@ -11,16 +11,24 @@
   }
 
   &--compact {
-    border-radius: 1.25rem; // 20px
-    padding: 1.5rem; // 24px
+    border-radius: 1.25rem;
+    padding: 1.5rem;
     box-shadow: 0 2px 12px rgba(15, 23, 42, .05);
     display: flex;
     flex-direction: column;
   }
 }
 
-// /medications cards only — subtle lift on hover, press on click
+// Medication card on /medications
 .medication-card-wrapper {
+  max-width: 320px;
+  min-height: 240px;
+  height: 100%;
+  background-color: #FFFFFF;
+  border: 1.5px solid $primary-light;
+  border-radius: 1.25rem;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08);
   transition: transform .15s cubic-bezier(.4, 0, .2, 1), box-shadow .15s ease;
 
   &:hover {
@@ -30,6 +38,78 @@
 
   &:active {
     transform: scale(.98);
+  }
+
+  .medication-card-actions {
+    top: .75rem;
+    right: .75rem;
+    gap: .5rem;
+
+    i {
+      font-size: .875rem;
+    }
+  }
+
+  .medication-card-body {
+    gap: .5rem;
+  }
+
+  .medication-card-time {
+    font-size: 1.625rem;
+    font-weight: 700;
+  }
+
+  .medication-card-name-row {
+    gap: .625rem;
+  }
+
+  .medication-card-emoji {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .medication-card-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $text-primary;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+  }
+
+  .medication-card-dosage {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-primary;
+    text-transform: uppercase;
+  }
+
+  .medication-card-frequency {
+    font-size: .75rem;
+    font-weight: 500;
+  }
+
+  .medication-card-buttons {
+    gap: .5rem;
+  }
+
+  .medication-card-taken-badge {
+    background-color: $mint;
+    color: #FFFFFF;
+    font-size: .6875rem;
+    font-weight: 600;
+    padding: .5rem 1rem;
+    letter-spacing: .03em;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .medication-card-pill-btn {
+    padding: .5rem 1rem;
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .03em;
+    white-space: nowrap;
+    text-align: center;
   }
 }
 
