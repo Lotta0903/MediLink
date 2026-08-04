@@ -94,3 +94,80 @@
   background-color: $bg-app;
   color: $text-muted;
 }
+
+.horizontal-scroll-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 12px;
+}
+
+
+.horizontal-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.medication-card-wrapper {
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.medication-card {
+  min-height: 200px;
+  background-color: #FFFFFF;
+  border: 1.5px solid #CFFAFE;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 12px rgba(14, 165, 233, 0.06);
+  overflow: hidden;
+}
+
+.medication-card-content {
+  padding: 1.125rem;
+  gap: .5rem;
+}
+
+.medication-time {
+  font-size: 1.625rem;
+  font-weight: 700;
+}
+
+.medication-icon-row {
+  gap: .625rem;
+}
+
+.medication-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.medication-name {
+  font-size: .9375rem;
+  font-weight: 700;
+  color: #0F172A;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.medication-dosage {
+  font-size: .9375rem;
+  font-weight: 600;
+  color: #0F172A;
+  text-transform: uppercase;
+}
+
+.medication-frequency {
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.medication-strip {
+  padding: .625rem;
+}
+
+.medication-strip-text {
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}

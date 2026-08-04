@@ -52,7 +52,7 @@
       <% if @today_medications.empty? %>
         <p class="text-muted text-center">No medications scheduled.</p>
       <% else %>
-        <div class="row g-4 justify-content-center">
+        <div class="horizontal-scroll-wrapper justify-content-center">
           <% @today_medications.each do |medication| %>
             <%= render "medication_summary_card", medication: medication %>
           <% end %>
