@@ -103,17 +103,13 @@
   gap: 12px;
 }
 
-
 .horizontal-scroll-wrapper::-webkit-scrollbar {
   display: none;
 }
 
-.medication-card-wrapper {
+.medication-card-horizontal {
   width: 260px;
   flex-shrink: 0;
-}
-
-.medication-card {
   min-height: 200px;
   background-color: #FFFFFF;
   border: 1.5px solid #CFFAFE;
@@ -122,17 +118,17 @@
   overflow: hidden;
 }
 
-.medication-card-content {
+.medication-card-content-horizontal {
   padding: 1.125rem;
   gap: .5rem;
 }
 
-.medication-time {
+.medication-time-horizontal {
   font-size: 1.625rem;
   font-weight: 700;
 }
 
-.medication-icon-row {
+.medication-icon-row-horizontal {
   gap: .625rem;
 }
 
@@ -161,7 +157,7 @@
   font-weight: 500;
 }
 
-.medication-strip {
+.medication-strip-horizontal {
   padding: .625rem;
 }
 

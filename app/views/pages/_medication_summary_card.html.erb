@@ -22,22 +22,22 @@
   end
 %>
 
-<div class="medication-card-wrapper flex-shrink-0">
-  <div class="medication-card d-flex flex-column">
-    <div class="medication-card-content text-center flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-      <p class="medication-time text-primary mb-0"><%= medication.reminder_time %></p>
+<div class="medication-card-horizontal flex-shrink-0">
 
-      <div class="medication-icon-row d-flex align-items-center justify-content-center">
-        <span class="medication-icon">💊</span>
-        <p class="medication-name mb-0"><%= medication.name %></p>
-      </div>
+  <div class="medication-card-content-horizontal text-center flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+    <p class="medication-time-horizontal text-primary mb-0"><%= medication.reminder_time %></p>
 
-      <p class="medication-dosage mb-0"><%= medication.dosage %></p>
-      <p class="medication-frequency text-muted mb-0"><%= medication.frequency %></p>
+    <div class="medication-icon-row-horizontal d-flex align-items-center justify-content-center">
+      <span class="medication-icon">💊</span>
+      <p class="medication-name mb-0"><%= medication.name %></p>
     </div>
 
-    <div class="medication-strip text-center" style="background-color: <%= strip_bg %>;">
-      <span class="medication-strip-text" style="color: <%= strip_color %>;"><%= strip_text %></span>
-    </div>
+    <p class="medication-dosage mb-0"><%= medication.dosage %></p>
+    <p class="medication-frequency text-muted mb-0"><%= medication.frequency %></p>
   </div>
+
+  <div class="medication-strip-horizontal text-center" style="background-color: <%= strip_bg %>;">
+    <span class="medication-strip-text" style="color: <%= strip_color %>;"><%= strip_text %></span>
+  </div>
+
 </div>
