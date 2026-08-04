@@ -1,4 +1,4 @@
-
+// Specific CSS for the medications index page
 .section-header {
   font-size: .8rem;
   text-transform: uppercase;
@@ -19,4 +19,123 @@
 .medications-section-title {
   font-weight: 600;
   letter-spacing: .02em;
+}
+
+.vertical-scroll-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  overflow-y: auto;
+  gap: 10px;
+}
+
+.vertical-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.medication-card-vertical {
+  display: flex;
+  align-items: center;
+  gap: .875rem;
+  max-width: 640px;
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1.5px solid #CFFAFE;
+  border-radius: 1rem;
+  padding: .875rem 1rem;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08);
+  position: relative;
+}
+
+.medication-card-actions-vertical {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  display: flex;
+  gap: .5rem;
+}
+
+.medication-action-icon {
+  font-size: .875rem;
+}
+
+.medication-card-content-vertical {
+  display: flex;
+  gap: .25rem;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+.medication-time-vertical {
+  font-size: 1.125rem;
+  font-weight: 700;
+  min-width: 2.5rem;
+  text-align: center;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding-right: .875rem;
+  border-right: 1px solid #CFFAFE;
+}
+
+.medication-pill-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.medication-name-wrapper {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.medication-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0F172A;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.medication-dosage {
+  font-size: .875rem;
+  font-weight: 700;
+  color: #0F172A;
+  text-transform: uppercase;
+}
+
+.medication-frequency {
+  font-size: .6875rem;
+  font-weight: 500;
+}
+
+.medication-footer-actions {
+  display: flex;
+  gap: .5rem;
+}
+
+.medication-taken-badge {
+  background-color: #10B981;
+  color: #FFFFFF;
+  font-size: .625rem;
+  font-weight: 600;
+  padding: .4rem .8rem;
+  letter-spacing: .03em;
+  white-space: nowrap;
+  border-radius: .5rem;
+}
+
+.medication-action-button {
+  padding: .4rem .8rem;
+  font-size: .625rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  white-space: nowrap;
+  border-radius: .5rem;
+}
+
+.medication-details {
+  margin-left: 5px;
 }

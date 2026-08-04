@@ -22,21 +22,22 @@
   end
 %>
 
-<div class="col-12 col-md-4">
-  <div class="mx-auto d-flex flex-column" style="min-height: 200px; background-color: #FFFFFF; border: 1.5px solid #CFFAFE; border-radius: 1.25rem; box-shadow: 0 2px 12px rgba(14, 165, 233, 0.06); overflow: hidden;">
-    <div class="text-center flex-grow-1 d-flex flex-column align-items-center justify-content-center" style="padding: 1.125rem; gap: .5rem;">
-      <p class="text-primary mb-0" style="font-size: 1.625rem; font-weight: 700;"><%= medication.reminder_time %></p>
+<div class="medication-card-horizontal flex-shrink-0">
 
-      <div class="d-flex align-items-center justify-content-center" style="gap: .625rem;">
-        <span style="font-size: 24px; line-height: 1;">💊</span>
-        <p class="mb-0" style="font-size: .9375rem; font-weight: 700; color: #0F172A; text-transform: uppercase; letter-spacing: .03em;"><%= medication.name %></p>
-      </div>
+  <div class="medication-card-content-horizontal text-center flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+    <p class="medication-time-horizontal text-primary mb-0"><%= medication.reminder_time %></p>
 
-      <p class="mb-0" style="font-size: .9375rem; font-weight: 600; color: #0F172A; text-transform: uppercase;"><%= medication.dosage %></p>
-      <p class="text-muted mb-0" style="font-size: .75rem; font-weight: 500;"><%= medication.frequency %></p>
+    <div class="medication-icon-row-horizontal d-flex align-items-center justify-content-center">
+      <span class="medication-icon">💊</span>
+      <p class="medication-name mb-0"><%= medication.name %></p>
     </div>
-    <div class="text-center" style="background-color: <%= strip_bg %>; padding: .625rem;">
-      <span style="color: <%= strip_color %>; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;"><%= strip_text %></span>
-    </div>
+
+    <p class="medication-dosage mb-0"><%= medication.dosage %></p>
+    <p class="medication-frequency text-muted mb-0"><%= medication.frequency %></p>
   </div>
+
+  <div class="medication-strip-horizontal text-center" style="background-color: <%= strip_bg %>;">
+    <span class="medication-strip-text" style="color: <%= strip_color %>;"><%= strip_text %></span>
+  </div>
+
 </div>
