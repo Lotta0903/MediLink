@@ -53,11 +53,11 @@ header .calendar-navigation span {
   user-select: none;
   color: $primary;
   font-size: 2.8rem;
+  transition: background-color .15s ease;
 
   &:hover {
     color: white;
     background-color: $primary;
-    transition: .15s;
   }
 }
 
@@ -138,8 +138,8 @@ header .calendar-current-date {
 }
 
 .calendar-dates li:not(.active):not(.inactive):not(.highlight):hover::before {
-  background: $primary;
-  transition: .15s;
+  background-color: $primary;
+  transition: .15s ease;
 }
 
 .calendar-dates li.highlight {
@@ -151,4 +151,26 @@ header .calendar-current-date {
   z-index: 10;
   line-height: 30px;
   text-align: center;
+}
+
+#med-day-info {
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  // display: none;
+}
+
+#agenda-follow-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#agenda-follow-email {
+  font-size: .8125rem;
+}
+
+#agenda-button {
+  border-radius: 12px;
+  padding: .5rem 1rem;
+  font-weight: 600;
+  font-size: .8125rem;
 }

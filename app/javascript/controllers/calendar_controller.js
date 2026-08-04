@@ -55,6 +55,7 @@ export default class extends Controller {
 
     function addClickListenersToDays() {
       const allDays = day.querySelectorAll('li:not(.inactive)');
+      const dayInfoCard = document.getElementById('med-day-info');
       allDays.forEach(li => {
         li.addEventListener('click', () => {
           if (selectedDayElement) {
