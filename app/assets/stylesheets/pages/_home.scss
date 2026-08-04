@@ -1,9 +1,90 @@
-// Specific CSS for your home-page
+
+
+.landing-dashboard {
+  padding-bottom: 2.5rem;
+
+  &__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  &__date-nav {
+    max-width: 560px;
+    width: 100%;
+    padding: 1.5rem 2rem;
+
+    .arrow-icon {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__today-pill {
+    padding: .75rem 1.5rem;
+    min-width: 150px;
+
+    .today-label {
+      font-weight: 600;
+    }
+
+    .today-date {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+
+  &__progress-card {
+    max-width: 460px;
+    width: 100%;
+    padding: 1.5rem;
+    border: 2px solid $primary-light;
+    border-radius: 1.5rem;
+    box-shadow: 0 6px 24px rgba(6, 182, 212, 0.12);
+
+    .progress-label {
+      font-size: .6875rem;
+      font-weight: 600;
+      color: $text-muted;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .progress-count {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .progress {
+      height: 12px;
+    }
+
+    .progress-message {
+      font-size: .8125rem;
+      font-weight: 500;
+      color: $text-primary;
+    }
+
+    .progress-percent {
+      font-size: .8125rem;
+      font-weight: 600;
+    }
+  }
+
+  &__section-title {
+    font-weight: 700;
+  }
+
+  &__section-subtitle {
+    font-size: .875rem;
+    font-weight: 500;
+  }
+}
+
+// Signed-out marketing hero
 
 .hero-section {
   background-color: $primary;
   min-height: 60vh;
-  padding: 6.5rem 1rem; // 100px+ top/bottom
+  padding: 6.5rem 1rem;
 }
 
 .how-it-works-icon {

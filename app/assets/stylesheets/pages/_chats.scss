@@ -6,11 +6,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 100vh;
   padding: 0 20px;
   overflow: hidden;
   padding-top: 20px;
   background-color: #F0FAFD;
+  min-height: calc(100vh - 59.75px);
+  margin-left: 250px;
+  transition: margin-left .3s;
+
 
   #messages {
     width: 100%;
@@ -30,12 +33,18 @@
     padding: 15px;
     transition: all 0.3s ease;
 
+    .user-chat-bubble {
+      background-color: #D6F0F8;
+      color: #1A3A44;
+    }
+
     #chat_title {
       font-weight: 600;
       text-align: center;
+      color: black;
 
       #span {
-        color: #7f9ac4;
+        color: #06B6D4;
       }
     }
 
@@ -99,12 +108,18 @@
 .sidenav {
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: fixed;
+  top: 59.75px;
+  height: 100%;
+  left: 0;
+  z-index: 1;
+  transform: translateX(0);
+  width: 250px;
   background-color: #0F5C73;
-  height: 100vh;
-  padding: 20px;
+  padding: 20px 8px;
   overflow-y: auto;
   color: #E8F7FB;
+  transition: transform 0.3s ease;
 
   #new-chat {
     padding-top: 10px;
@@ -151,7 +166,7 @@
     border-radius: 4px;
   }
 
-  .nav-link {
+  .close-btn {
     color: #E8F7FB;
     margin-left: 15px;
   }
@@ -166,3 +181,7 @@
     grid-template-columns: 1fr auto;
   }
 }
+.open-btn{
+    color: #000000;
+    margin-left: 15px;
+  }

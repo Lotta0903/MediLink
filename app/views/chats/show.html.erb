@@ -1,43 +1,40 @@
 <%= turbo_stream_from @chat %>
 
 <div class="medibot-container">
+  <div data-controller="chatbot" >
 
-  <div class="row" data-controller="toggle" >
-    <div class="col-2" data-toggle-target="hideable">
-      <nav class="sidenav">
-        <div class="mb-4">
-          <%= render "messages/sidenav", chats: @chats %>
-        </div>
-      </nav>
-    </div>
-    <div class="col-auto">
-      <%= link_to "#", class:"d-none nav-link", data:{ toggle_target: "show", action: "click->toggle#call"} do %>
+    <nav class="sidenav" data-chatbot-target="sidenav">
+      <div class="mb-4">
+        <%= render "messages/sidenav", chats: @chats %>
+      </div>
+    </nav>
+
+    <div>
+      <%= link_to "#", class:"open-btn", data:{ chatbot_target: "sidenav", action: "click->chatbot#opensideNav"} do %>
         <i class="fa-solid fa-bars"></i>
       <% end %>
     </div>
 
-    <div class="col">
-      <div class="medibot">
+    <div class="medibot" data-chatbot-target="chatContainer">
 
-        <div id="messages">
-          <%= render "messages/messages", messages:@chat.messages %>
-        </div>
-
-        <div id="new_message_container" class="mt-4", data-toggle-target="input", data-action="submit->toggle#submit">
-          <div class="greeting  <%= "d-none" if @chat.messages.any? %>" data-toggle-target="hide">
-
-            <% if @user.first_name.present?%>
-            <h1 id="chat_title"> Hey <%= @user.first_name %>, how can I <span id="span">help you today</span>🩺</h1>
-            <% else %>
-            <h1 id="chat_title"> How can I <span id="span">help you today</span>🩺</h1>
-            <% end %>
-            <p>Your AI assistant for medication guidance</p>
-          </div>
-          <%= render "messages/form", chat: @chat%>
-        </div>
-
-        </div>
+      <div id="messages">
+        <%= render "messages/messages", messages:@chat.messages %>
       </div>
-  </div>
 
+      <div id="new_message_container" class="mt-4" data-chatbot-target="inputField" data-action="submit->chatbot#submit">
+
+        <div class="greeting <%= "d-none" if @chat.messages.any? %>" data-chatbot-target="hideGreeting">
+          <% if @user.first_name.present? %>
+            <h1 id="chat_title">Hey <%= @user.first_name %>, how can I <span id="span">help you today?</span>🩺</h1>
+          <% else %>
+            <h1 id="chat_title">How can I <span id="span">help you today</span>🩺</h1>
+          <% end %>
+          <p>Your AI assistant for medication guidance</p>
+        </div>
+
+        <%= render "messages/form", chat: @chat %>
+      </div>
+
+    </div>
+  </div>
 </div>

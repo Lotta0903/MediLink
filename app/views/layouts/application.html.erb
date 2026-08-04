@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Medilink" %></title>
+    <title><%= content_for(:title) || "MediLink — Never miss a dose, stay connected" %></title>
+    <meta name="description" content="MediLink helps families track medications together. Never miss a dose, stay connected with the people who care about you.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Medilink">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.medilinkapp.com">
+    <meta property="og:title" content="MediLink — Never miss a dose, stay connected">
+    <meta property="og:description" content="MediLink helps families track medications together. Never miss a dose, stay connected with the people who care about you.">
+    <meta property="og:image" content="https://www.medilinkapp.com/og-image.png">
+    <meta property="og:site_name" content="MediLink">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.medilinkapp.com">
+    <meta name="twitter:title" content="MediLink — Never miss a dose, stay connected">
+    <meta name="twitter:description" content="MediLink helps families track medications together. Never miss a dose, stay connected with the people who care about you.">
+    <meta name="twitter:image" content="https://www.medilinkapp.com/og-image.png">
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,15 +32,10 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>

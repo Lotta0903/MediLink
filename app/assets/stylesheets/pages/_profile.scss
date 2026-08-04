@@ -1,0 +1,25 @@
+// Profile page
+
+.profile-card {
+  max-width: 500px;
+  width: 100%;
+}
+
+.profile-circle-btn {
+  padding: .875rem 2.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.profile-circle-preview {
+  max-width: 960px;
+}
+
+.profile-follower {
+  width: 90px;
+
+  &__email {
+    font-size: .6875rem;
+  }
+}
+
