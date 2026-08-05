@@ -18,6 +18,27 @@
   }
 }
 
+// Same visual style as the landing page's horizontal medication scroll —
+// direct-child selector overrides the card partials' own col-12/col-md-4
+// grid classes without needing to touch those partials.
+.follows-horizontal-scroll {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 8px 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > div {
+    flex-shrink: 0;
+    min-width: 240px;
+    width: 240px;
+  }
+}
+
 .follows-add-form {
   display: flex;
   gap: .75rem;

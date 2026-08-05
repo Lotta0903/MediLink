@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <% end %>
 
-<div data-controller="circle-toggle">
+<div>
   <div class="container mt-4">
     <h1 class="page-title mb-2">My Profile</h1>
   </div>
@@ -17,44 +17,6 @@
       <p class="text-muted small mb-4"><%= @user.email %></p>
 
       <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary btn-action" %>
-    </div>
-  </div>
-
-  <div class="text-center mt-3">
-    <button type="button" class="profile-circle-btn btn btn-outline-primary btn-action rounded-pill" data-action="click->circle-toggle#toggle">
-      View my circle
-    </button>
-  </div>
-
-  <div class="profile-circle-preview circle-preview mx-auto mt-4" data-circle-toggle-target="panel">
-    <div class="mb-4">
-      <p class="section-header mb-3">People you follow</p>
-      <% if @user.following.empty? %>
-        <p class="text-muted small">You're not following anyone yet.</p>
-      <% else %>
-        <div class="row g-4">
-          <% @user.following.each do |followed_user| %>
-            <%= render "follows/followed_user_card", followed_user: followed_user %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-
-    <div>
-      <p class="section-header mb-3">People following you</p>
-      <% if @user.followers.empty? %>
-        <p class="text-muted small">No one is following you yet.</p>
-      <% else %>
-        <div class="d-flex gap-3 overflow-x-auto pb-2">
-          <% @user.followers.each do |follower| %>
-            <div class="profile-follower text-center flex-shrink-0">
-              <%= render "shared/user_avatar", user: follower, size: 56 %>
-              <p class="small mt-2 mb-0 text-truncate"><%= follower.full_name %></p>
-              <p class="profile-follower__email text-muted mb-0 text-truncate"><%= follower.email %></p>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
