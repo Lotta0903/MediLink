@@ -1,0 +1,35 @@
+<div class="col-12 col-md-4 h-100">
+  <div class="medication-card-wrapper mx-auto d-flex flex-column position-relative">
+    <div class="medication-card-body position-relative d-flex flex-column align-items-center text-center flex-grow-1 justify-content-center"
+         data-action="click->medication-modal#open"
+         data-medication-id="<%= medication.id %>">
+      <svg class="medication-card-chevron position-absolute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 6 15 12 9 18"></polyline>
+      </svg>
+
+      <p class="medication-card-time text-primary mb-0">🕐 <%= medication.reminder_time %></p>
+
+      <div class="medication-card-name-row d-flex align-items-center justify-content-center">
+        <span class="medication-card-emoji">💊</span>
+        <p class="medication-card-name mb-0"><%= medication.name %></p>
+      </div>
+
+      <p class="medication-card-dosage mb-0"><%= medication.dosage %></p>
+    </div>
+
+    <div class="mt-auto text-center pt-2">
+      <div class="medication-card-buttons d-flex flex-nowrap justify-content-center align-items-center">
+        <% if medication.taken_today? %>
+          <span class="medication-card-taken-badge badge rounded-pill d-inline-flex align-items-center justify-content-center">
+            ✓ TAKEN <%= medication.last_taken_time %>
+          </span>
+        <% else %>
+          <%= button_to "✓ Mark as taken", medication_medication_logs_path(medication),
+                method: :post,
+                class: "medication-card-pill-btn btn btn-mark-taken btn-action rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center",
+                data: { controller: "taken-button", action: "click->taken-button#flash click->medication-modal#stop" } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
