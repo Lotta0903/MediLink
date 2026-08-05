@@ -21,7 +21,7 @@
     <% if @following.empty? %>
       <p class="text-muted text-center">You're not following anyone yet.</p>
     <% else %>
-      <div class="row g-4 justify-content-center">
+      <div class="follows-horizontal-scroll">
         <% @following.each do |followed_user| %>
           <%= render "followed_user_card", followed_user: followed_user %>
         <% end %>
@@ -36,7 +36,7 @@
     <% if @followers.empty? %>
       <p class="text-muted text-center">No one is following you yet.</p>
     <% else %>
-      <div class="row g-4 justify-content-center">
+      <div class="follows-horizontal-scroll">
         <% @followers.each do |follower| %>
           <%= render "follower_card", follower: follower %>
         <% end %>
