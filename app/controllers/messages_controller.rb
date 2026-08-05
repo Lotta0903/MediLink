@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     @message.chat = @chat
-    @message.role = set_role
+    @message.role = "user"
 
     if @message.save
       @assistant_message = @chat.messages.create(role: "assistant", content: "")
@@ -67,10 +67,6 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
-  end
-
-  def set_role
-    @message.role = @family_member.present? ? "family_member" : "user"
   end
 
   def medication_name
