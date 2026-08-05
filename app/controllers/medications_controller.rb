@@ -9,6 +9,8 @@ class MedicationsController < ApplicationController
 
   def calendar
     @medications = current_user.medications
+    @following = current_user.following
+    @user = current_user
   end
 
   def new
@@ -57,6 +59,7 @@ class MedicationsController < ApplicationController
   end
 
   def medication_params
-    params.require(:medication).permit(:name, :dosage, :frequency, :dose_frequency, :start_date, :end_date, :reminder_time, :notes, :intake_instructions, :with_food)
+    params.require(:medication).permit(:name, :dosage, :frequency, :dose_frequency, :start_date, :end_date,
+                                       :reminder_time, :notes, :intake_instructions, :with_food)
   end
 end

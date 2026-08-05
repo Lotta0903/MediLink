@@ -1,7 +1,20 @@
-<div class="container mt-4">
-  <h1 class="page-title mt-4 mb-3"> Calendar </h1>
+<div class="container mt-4" data-controller="calendar">
 
-  <div data-controller="calendar" class="calendar-container border border-primary mx-auto">
+  <div class="row align-items-center mt-4 mb-3">
+    <div class="col text-center">
+      <%= link_to "← Back", medications_path, class: "form-back-link" %>
+    </div>
+    <div class="col">
+      <h1 class="page-title mb-0"> Calendar </h1>
+    </div>
+    <div class="col"> </div>
+  </div>
+
+  <% if @user %>
+    <h2 class="mb-3"> Your agenda </h2>
+  <% end %>
+
+  <div class="calendar-container border border-primary mx-auto">
     <header class="calendar-header">
       <div class="calendar-navigation">
         <span id="calendar-prev" class="material-symbols-rounded">
@@ -29,12 +42,31 @@
     </div>
   </div>
 
-  <div class="card shadow bg-light border border-primary rounded-4 col-9 col-lg-6 mx-auto my-4">
+  <div id="med-day-info" class="card border border-primary rounded-4 mx-auto mt-4">
     <div class="card-body">
-      <% @medications.each do |medication| %>
-        <h3><%= medication.start_date.strftime("%B") %> <%= medication.start_date.day %>, <%= medication.start_date.year %></h3>
-        <p class="mb-0"><%= medication.name.capitalize %> (<%= medication.dosage %>) <br> <%= medication.reminder_time %></p>
+
+      <h3 class="mb-3"> <%= Date.today.strftime("%B") %> <%= Date.today.day %>, <%= Date.today.year %> </h3>
+
+      <% medications = @medications.sort_by { |medication| medication.reminder_time } %>
+      <% medications.each do |medication| %>
+        <p class="border border-primary border-top-0 border-start-0 rounded-4 p-1 mb-3">
+        <b> <%= medication.name.capitalize %> (<%= medication.dosage %>) </b>
+        <br> Reminder Time: <%= medication.reminder_time %> / <%= medication.frequency %> </p>
       <% end %>
+
     </div>
   </div>
+
+  <h2 class="mt-5 mb-4"> View your follows' agendas </h2>
+
+  <% if @following.empty? %>
+    <p class="text-muted text-center mb-5"> You're not following anyone </p>
+  <% else %>
+    <div class="row g-4 justify-content-center mb-5">
+      <% @following.each do |followed_user| %>
+        <%= render "followed_user_agenda", followed_user: followed_user %>
+      <% end %>
+    </div>
+  <% end %>
+
 </div>

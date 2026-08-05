@@ -66,10 +66,13 @@ export default class extends Controller {
 
           clickedDay = parseInt(li.getAttribute('data-day'));
 
+          dayInfoCard.classList.remove("display");
+
           console.log('Clicked day:', clickedDay);
         });
       });
     }
+
 
     manipulate();
 
