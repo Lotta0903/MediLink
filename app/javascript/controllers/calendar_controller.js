@@ -2,7 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
+  static targets = ["medlist"]
+
   connect() {
+
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth();
@@ -68,11 +71,12 @@ export default class extends Controller {
 
           dayInfoCard.classList.remove("display");
 
+          enableInfo();
+
           console.log('Clicked day:', clickedDay);
         });
       });
     }
-
 
     manipulate();
 
@@ -95,4 +99,9 @@ export default class extends Controller {
       });
     });
   }
+
+  enableInfo() {
+    this.element.classList.remove("display");
+  }
+
 }
