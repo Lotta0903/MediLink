@@ -3,11 +3,8 @@
 <% end %>
 
 <div class="notifications-container container mx-auto px-4 pb-5">
-  <div class="text-center mb-5 position-relative">
+  <div class="text-center mb-5">
     <h1 class="page-title mt-4 mb-2">Notifications 🔔</h1>
-    <% if @has_unread %>
-      <%= link_to "Mark all as read", notifications_path, class: "btn btn-outline-primary btn-sm position-absolute top-0 end-0" %>
-    <% end %>
   </div>
 
   <% if @notifications.empty? %>
@@ -37,12 +34,6 @@
               <%= notification.status == :taken ? "Taken at" : "Missed at" %> <%= notification.medication.reminder_time %>
             </p>
           </div>
-
-          <% if notification.status == :taken %>
-            <span class="notification-card__badge badge badge-success-soft rounded-pill">✓ Viewed</span>
-          <% else %>
-            <span class="notification-card__badge badge badge-danger-soft rounded-pill">Missed</span>
-          <% end %>
 
           <%= button_to notification_path(notification), method: :delete, class: "btn btn-link p-0 border-0", form: { data: { turbo_confirm: "Delete this notification?" } } do %>
             <i class="notification-card__delete-icon bi bi-trash icon-muted"></i>

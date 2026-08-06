@@ -122,29 +122,29 @@ button:hover .icon-muted.icon-danger-hover {
   }
 }
 
-// "Add a medication" — white bg, blue border, flashes solid blue on click
+// "Add a medication" — white bg, coral border, flashes solid coral on click
 .btn-add-medication {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: .5rem; // 8px
   background-color: $card;
-  color: $primary;
+  color: $coral;
   font-size: .875rem; // 14px
   font-weight: 600;
   letter-spacing: .03em;
   padding: .75rem 2rem; // 12px 32px
   border-radius: 999px;
-  border: 2px solid $primary;
+  border: 2px solid $coral;
   transition: background-color .15s, color .15s, box-shadow .15s, transform .1s;
 
   &:hover {
-    background-color: $primary;
+    background-color: $coral;
     color: $card;
   }
 
   &.clicked {
-    background: $primary !important;
+    background: $coral !important;
     color: $card !important;
     transform: scale(.97);
 
@@ -157,6 +157,21 @@ button:hover .icon-muted.icon-danger-hover {
 .btn-add-medication-icon {
   font-size: 1rem; // 16px
   line-height: 1;
-  color: $primary;
+  color: $coral;
   transition: color .1s;
+}
+
+// "Follow" (My Circle) — coral, matching Add a medication
+.btn-follow {
+  background-color: $card;
+  color: $coral;
+  border: 2px solid $coral;
+  border-radius: $btn-border-radius;
+  font-weight: $btn-font-weight;
+  transition: background-color .15s, color .15s;
+
+  &:hover {
+    background-color: $coral;
+    color: $card;
+  }
 }

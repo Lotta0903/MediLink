@@ -46,5 +46,9 @@
 
     <%= yield %>
 
+    <% if user_signed_in? %>
+      <div class="notification-toast-container" data-controller="notification-toast"></div>
+    <% end %>
+
   </body>
 </html>

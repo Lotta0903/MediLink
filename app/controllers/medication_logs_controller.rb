@@ -10,6 +10,21 @@ class MedicationLogsController < ApplicationController
 
     @medication.medication_logs.create!(taken_at: Time.current)
 
+
+    current_user.notifications
+      .where(medication: @medication, kind: ["reminder", "missed"])
+      .where(created_at: Date.current.all_day)
+      .destroy_all
+
+
+    current_user.followers.each do |follower|
+      follower.notifications
+        .where(medication: @medication, kind: "follower_missed")
+        .where(created_at: Date.current.all_day)
+        .destroy_all
+    end
+
+
     current_user.followers.each do |follower|
       Notification.create!(user: follower, medication: @medication)
     end
