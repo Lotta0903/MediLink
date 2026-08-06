@@ -23,6 +23,7 @@
 // grid classes without needing to touch those partials.
 .follows-horizontal-scroll {
   display: flex;
+  justify-content: center;
   overflow-x: auto;
   gap: 16px;
   padding: 8px 0;

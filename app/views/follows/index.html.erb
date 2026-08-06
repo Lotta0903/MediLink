@@ -12,7 +12,7 @@
     <p class="section-header mb-2">Add someone to your circle</p>
     <%= form_with url: follows_path, method: :post, local: true, class: "follows-add-form" do %>
       <input type="email" name="email" class="follows-add-input form-control flex-grow-1" placeholder="Enter their MediLink email" required>
-      <button type="submit" class="follows-add-btn btn btn-primary btn-action text-nowrap">Follow</button>
+      <button type="submit" class="follows-add-btn btn btn-follow btn-action text-nowrap">Follow</button>
     <% end %>
   </div>
 
