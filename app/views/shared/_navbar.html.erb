@@ -18,10 +18,13 @@
           <li class="nav-item">
             <%= link_to "My Circle", follows_path, class: "nav-link #{"active" if current_page?(follows_path)}", aria: { current: current_page?(follows_path) ? "page" : nil } %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item position-relative">
             <% unread_count = current_user.notifications.unread.count %>
             <%= link_to notifications_path, class: "nav-link #{"active" if current_page?(notifications_path)}", aria: { current: current_page?(notifications_path) ? "page" : nil } do %>
-              Notifications<%= " (#{unread_count})" if unread_count > 0 %>
+              Notifications
+              <% if unread_count > 0 %>
+                <span class="notification-badge"><%= unread_count %></span>
+              <% end %>
             <% end %>
           </li>
           <li class="nav-item">
