@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   connect() {
+
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth();
@@ -72,7 +73,6 @@ export default class extends Controller {
         });
       });
     }
-
 
     manipulate();
 
