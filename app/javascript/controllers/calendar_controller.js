@@ -2,8 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
-  static targets = ["medlist"]
-
   connect() {
 
     let date = new Date();
@@ -71,8 +69,6 @@ export default class extends Controller {
 
           dayInfoCard.classList.remove("display");
 
-          enableInfo();
-
           console.log('Clicked day:', clickedDay);
         });
       });
@@ -99,9 +95,4 @@ export default class extends Controller {
       });
     });
   }
-
-  enableInfo() {
-    this.element.classList.remove("display");
-  }
-
 }
