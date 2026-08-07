@@ -68,7 +68,7 @@ label {
   transition: color 0.15s ease;
 
   &:hover {
-    color: $primary;
+    color: #0A1A3A;
   }
 }
 
@@ -112,8 +112,8 @@ label {
   text-align: center;
 }
 
-.form-label-centered {
-  text-align: center;
+.form-label-start {
+  text-align: start;
 }
 
 .time-picker-row {
@@ -121,7 +121,7 @@ label {
 }
 
 .time-picker-select {
-  width: 80px;
+  width: 100%;
 }
 
 .time-picker-separator {

@@ -2,7 +2,7 @@
   background-color: $card;
   border: 1px solid $border;
   border-radius: 1.5rem;
-  box-shadow: 0 8px 32px rgba(15, 23, 42, .06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   padding: 2rem;
 
   &--tinted {
@@ -19,16 +19,18 @@
   }
 }
 
-// Medication card on /medications
 .medication-card-wrapper {
-  max-width: 320px;
-  min-height: 240px;
+  max-width: 380px;
   height: 100%;
   background-color: #FFFFFF;
-  border: 1.5px solid $primary-light;
+  border: 1.5px solid #eaeaea;
   border-radius: 1.25rem;
-  padding: 1rem;
+  padding: 1.25rem;
   box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
   transition: transform .2s cubic-bezier(.4, 0, .2, 1), box-shadow .2s ease;
 
   &:hover {
@@ -41,73 +43,117 @@
   }
 
   .medication-card-body {
-    gap: .5rem;
     cursor: pointer;
   }
 
-  .medication-card-chevron {
-    top: 50%;
-    right: .25rem;
-    transform: translateY(-50%);
-    color: $text-muted;
-  }
-
-  .medication-card-time {
-    font-size: 1.625rem;
-    font-weight: 700;
-  }
-
-  .medication-card-name-row {
-    gap: .625rem;
-  }
-
-  .medication-card-emoji {
-    font-size: 18px;
+  .medication-card-icon {
+    background-color: #e2fce6;
+    color: #006622;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 20px;
     line-height: 1;
   }
 
+  .medication-icon-blue   {
+    color: #4A90E2;
+    background-color: #e6f2ff;
+  }
+
+  .medication-icon-purple {
+    color: #6F42C1;
+    background-color: #f3e8ff;
+  }
+
+  .medication-icon-green  {
+    color: #2ECC71;
+    background-color: #e2fce6;
+  }
+
+  .medication-icon-orange {
+    color: #F5A623;
+    background-color: #fff4e2;
+  }
+
+  .medication-icon-grey   {
+    color: #ADB5BD;
+    background-color: #f2f2f2;
+  }
+  .medication-icon-red {
+    color: white;
+    background-color: #ff6b6b;
+  }
+
   .medication-card-name {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    font-weight: 600;
     color: $text-primary;
-    text-transform: uppercase;
     letter-spacing: .03em;
   }
 
   .medication-card-dosage {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: $text-primary;
-    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #4b5563;
+  }
+
+  .medication-card-footer {
+    margin-top: auto;
+    gap: 0.5rem;
+  }
+
+  .medication-card-time {
+    background-color: #f3f4f6;
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    margin-bottom: 0;
+  }
+
+  .medication-card-taken-badge {
+    background-color: #e2fce6;
+    color: #006622;
+    font-size: .65rem;
+    font-weight: 600;
+    padding: .3rem .6rem;
+    border-radius: 50rem;
+    letter-spacing: .03em;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  .medication-card-pill-btn {
+    border: 1.5px solid #10b981;
+    color: #10b981;
+    background: transparent;
+    padding: .3rem .3rem;
+    font-size: .65rem;
+    font-weight: 600;
+    border-radius: 50rem;
+    letter-spacing: .03em;
+    white-space: nowrap;
+    line-height: 1.2;
+
+    &:hover {
+      background: #10b981;
+      color: #fff;
+    }
   }
 
   .medication-card-frequency {
     font-size: .75rem;
     font-weight: 500;
-  }
-
-  .medication-card-buttons {
-    gap: .5rem;
-  }
-
-  .medication-card-taken-badge {
-    background-color: $mint;
-    color: #FFFFFF;
-    font-size: .6875rem;
-    font-weight: 600;
-    padding: .5rem 1rem;
-    letter-spacing: .03em;
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  .medication-card-pill-btn {
-    padding: .5rem 1rem;
-    font-size: .6875rem;
-    font-weight: 600;
-    letter-spacing: .03em;
-    white-space: nowrap;
-    text-align: center;
   }
 }
 

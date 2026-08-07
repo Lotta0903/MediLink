@@ -1,7 +1,9 @@
-<div class="col-12 col-md-4">
-  <div class="follower-card app-card app-card--compact mx-auto h-100 text-center d-flex flex-column justify-content-center align-items-center">
-    <%= render "shared/user_avatar", user: follower, size: 64 %>
-    <p class="follower-card__name mb-0"><%= follower.full_name %></p>
-    <p class="follower-card__email text-muted mb-0"><%= follower.email %></p>
+<div class="follower-card app-card app-card position-relative">
+  <div class="d-flex align-items-center gap-3 mb-3">
+    <%= render "shared/user_avatar", user: follower, size: 56 %>
+    <div>
+      <p class="follower-card__name mb-0"><%= follower.full_name %></p>
+      <p class="follower-card__email text-muted mb-0"><%= follower.email %></p>
+    </div>
   </div>
 </div>

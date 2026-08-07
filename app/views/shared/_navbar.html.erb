@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-sm navbar-light navbar-lewagon py-2">
   <div class="container-fluid px-4">
-    <%= link_to "MediLink", root_path, class: "navbar-brand brand" %>
-
+    <%= link_to root_path, class: "navbar-brand brand" do %>
+      <i class="fa-solid fa-star-of-life"></i>
+      MediLink
+    <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

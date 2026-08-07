@@ -1,7 +1,7 @@
 // Specific CSS for the medications index page
 .section-header {
   font-size: .8rem;
-  color: $text-muted;
+  color: #FFFFFF;
   margin-bottom: 1rem;
 }
 
@@ -20,12 +20,19 @@
   letter-spacing: .02em;
 }
 
+.medications-section-header {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .vertical-scroll-wrapper {
   display: flex;
   flex-direction: column;
-  height: 300px;
+  max-height: 500px;
   overflow-y: auto;
-  gap: 10px;
+  gap: 16px;
 }
 
 .vertical-scroll-wrapper::-webkit-scrollbar {
@@ -39,8 +46,8 @@
   max-width: 640px;
   width: 100%;
   background-color: #FFFFFF;
-  border: 1.5px solid #CFFAFE;
   border-radius: 1rem;
+  border: 1px solid lightgrey;
   padding: .875rem 1rem;
   box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08);
   position: relative;
@@ -50,6 +57,7 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(14, 165, 233, 0.12);
+    border-color: #1BC9C4;
   }
 }
 
@@ -67,28 +75,71 @@
 
 .medication-card-content-vertical {
   display: flex;
+  flex-direction: column;
   gap: .25rem;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
   text-align: left;
-  flex-wrap: wrap;
 }
 
-.medication-time-vertical {
-  font-size: 1.125rem;
-  font-weight: 700;
-  min-width: 2.5rem;
-  text-align: center;
-  align-self: stretch;
+.medication-info-row {
   display: flex;
   align-items: center;
-  padding-right: .875rem;
-  border-right: 1px solid #CFFAFE;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: .125rem;
+}
+
+.medication-time-inline {
+  font-size: .8125rem;
+  font-weight: 700;
+  color: #0EA5E9;
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
 }
 
 .medication-pill-icon {
   font-size: 16px;
   line-height: 1;
+}
+
+.medication-card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+.medication-icon-blue {
+  color: #4A90E2;
+  background-color: #e6f2ff;
+}
+
+.medication-icon-purple{
+  color: #6F42C1;
+  background-color: #f3e8ff;
+}
+
+.medication-icon-green {
+  color: #2ECC71;
+  background-color: #e2fce6;
+}
+
+.medication-icon-orange{
+  color: #F5A623;
+  background-color: #fff4e2;
+}
+
+.medication-icon-grey {
+  color: #ADB5BD;
+  background-color: #f2f2f2;
+}
+
+.medication-icon-red {
+  color: white;
+  background-color: #ff6b6b;
 }
 
 .medication-name-wrapper {
@@ -100,29 +151,35 @@
 .medication-name {
   font-size: 1rem;
   font-weight: 800;
-  color: #0F172A;
+  color: $navy;
   letter-spacing: .03em;
 }
 
 .medication-dosage {
   font-size: .875rem;
-  font-weight: 700;
-  color: #0F172A;
+  font-weight: 500;
+  color: #64748B;
 }
 
 .medication-frequency {
   font-size: .6875rem;
-  font-weight: 500;
+  font-weight: 600;
+  color: #64748B;
+  background-color: #F1F5F9;
+  padding: .25rem .6rem;
+  border-radius: .5rem;
+  white-space: nowrap;
 }
 
-.medication-footer-actions {
+.medication-card-footer-actions {
+  margin-left: auto;
   display: flex;
-  gap: .5rem;
+  align-items: center;
 }
 
 .medication-taken-badge {
-  background-color: #10B981;
-  color: #FFFFFF;
+  background-color: #A7F3D0;
+  color: #065F46;
   font-size: .625rem;
   font-weight: 600;
   padding: .4rem .8rem;
@@ -143,8 +200,6 @@
 .medication-details {
   margin-left: 5px;
 }
-
-// Modal for medication detail
 
 body.no-scroll {
   overflow: hidden;
@@ -175,6 +230,10 @@ body.no-scroll {
   text-align: left;
 }
 
+.medication-modal-content::-webkit-scrollbar {
+  display: none;
+}
+
 .medication-modal-close {
   position: absolute;
   top: 1.5rem;
@@ -188,7 +247,7 @@ body.no-scroll {
   transition: color .15s;
 
   &:hover {
-    color: $primary;
+    color: $coral;
   }
 }
 
@@ -197,7 +256,7 @@ body.no-scroll {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -.02em;
-  color: #000000;
+  color: $navy;
   margin-bottom: 24px;
 }
 
@@ -214,7 +273,7 @@ body.no-scroll {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: $primary;
+  color: $navy;
 }
 
 .medication-modal-row {
@@ -252,12 +311,23 @@ body.no-scroll {
 
   &--delete {
     background-color: #FFFFFF;
-    color: $rose;
-    border: 1.5px solid $rose;
+    color: $coral;
+    border: 1.5px solid $coral;
 
     &:hover {
-      background-color: $rose;
+      background-color: $coral;
       color: #FFFFFF;
     }
   }
 }
+
+.edit-btn{
+    background-color: #FFFFFF;
+    color: $navy;
+    border: 1.5px solid $navy;
+
+    &:hover {
+      background-color: $navy;
+      color: #FFFFFF;
+    }
+  }

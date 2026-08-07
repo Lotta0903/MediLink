@@ -7,16 +7,19 @@
     <h1 class="page-title mb-2">My Profile</h1>
   </div>
 
-  <div class="container d-flex justify-content-center">
-    <div class="profile-card app-card text-center">
-      <div class="mb-3">
-        <%= render "shared/user_avatar", user: @user, size: 128 %>
+  <div class="profile-card-container">
+    <div class="container d-flex justify-content-center">
+      <div class="profile-card app-card ">
+        <div class="d-flex align-items-center gap-3 user-grid-wrapp mb-3">
+          <%= render "shared/user_avatar", user: @user, size: 72,  class: "profile-avatar" %>
+          <div class>
+            <h2 class="mb-1"><%= @user.full_name %></h2>
+            <p class="text-muted small "><%= @user.email %></p>
+          </div>
+        </div>
+        <%= link_to "Edit profile", edit_user_registration_path, class: " edit-profile-btn btn-action " %>
       </div>
-
-      <h2 class="mb-3"><%= @user.full_name %></h2>
-      <p class="text-muted small mb-4"><%= @user.email %></p>
-
-      <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary btn-action" %>
     </div>
+  </div>
   </div>
 </div>

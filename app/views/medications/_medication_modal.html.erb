@@ -84,9 +84,14 @@
         </div>
       </div>
 
+<<<<<<< HEAD
       <% if medication.user_id == current_user.id %>
         <div class="medication-modal-buttons d-flex">
           <%= link_to "Edit", edit_medication_path(medication), class: "medication-modal-pill-btn btn btn-outline-primary rounded-pill flex-fill" %>
+=======
+      <div class="medication-modal-buttons d-flex">
+        <%= link_to "Edit", edit_medication_path(medication), class: "medication-modal-pill-btn btn edit-btn rounded-pill flex-fill" %>
+>>>>>>> c561b87 (improve frontend styling and layout)
 
           <%= button_to "Delete", medication_path(medication), method: :delete,
                 class: "medication-modal-pill-btn medication-modal-pill-btn--delete btn rounded-pill w-100",

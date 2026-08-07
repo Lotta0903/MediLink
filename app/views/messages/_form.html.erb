@@ -1,6 +1,6 @@
 <%= form_with model: Message.new, url: chat_messages_path(chat), data: { turbo_stream: true }, html: { class: "your-form-class" } do |f| %>
   <div class="input-wrapper">
-    <%= f.text_field :content, id: "input-field", placeholder: "Do you have any questions?" %>
-    <button type="submit"><i class="fa-solid fa-circle-arrow-up"></i></button>
+    <%= f.text_field :content, id: "input-field", placeholder: "Do you have any questions?", class: "message-input-field" %>
+    <button type="submit" class="send-btn"><i class="fa-solid fa-circle-arrow-up"></i></button>
   </div>
 <% end %>

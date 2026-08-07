@@ -1,14 +1,14 @@
 // Profile page
 
+.profile-card-container{
+  width: 700px;
+  margin: 0 auto;
+
+}
+
 .profile-card {
   max-width: 500px;
   width: 100%;
-}
-
-.profile-circle-btn {
-  padding: .875rem 2.5rem;
-  font-size: 1.0625rem;
-  font-weight: 600;
 }
 
 .profile-circle-preview {
@@ -22,4 +22,3 @@
     font-size: .6875rem;
   }
 }
-
