@@ -1,24 +1,34 @@
-<div class="container mt-4" data-controller="calendar">
+<div class="container mt-4" data-controller="calendar medication-modal"
+     data-calendar-my-medications-value="<%= @medications_by_date.to_json %>"
+     data-calendar-followed-value="<%= @following_medications_by_user.to_json %>">
 
-  <div class="mt-4 mb-3">
-    <h1 class="page-title mb-0"> Calendar </h1>
+  <div class="calendar-switcher mt-4 mb-4">
+    <label for="calendar-viewer-select" class="calendar-switcher__label">Viewing calendar of:</label>
+    <select id="calendar-viewer-select"
+            class="calendar-switcher__select"
+            data-action="change->calendar#switchViewer">
+      <option value="me">Me</option>
+      <% @following.each do |followed_user| %>
+        <option value="<%= followed_user.id %>"><%= followed_user.full_name %></option>
+      <% end %>
+    </select>
   </div>
-
-  <% if @user %>
-    <h2 class="mb-3"> Your agenda </h2>
-  <% end %>
 
   <div class="calendar-container border border-primary mx-auto">
     <header class="calendar-header">
       <div class="calendar-navigation">
-        <span id="calendar-prev" class="material-symbols-rounded">
-          <
+        <span id="calendar-prev" data-action="click->calendar#prevMonth">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 6 9 12 15 18"></polyline>
+          </svg>
         </span>
       </div>
-      <p class="calendar-current-date"></p>
+      <p class="calendar-current-date" data-calendar-target="currentDate"></p>
       <div class="calendar-navigation">
-        <span id="calendar-next" class="material-symbols-rounded">
-          >
+        <span id="calendar-next" data-action="click->calendar#nextMonth">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 6 15 12 9 18"></polyline>
+          </svg>
         </span>
       </div>
     </header>
@@ -32,35 +42,16 @@
         <li>Fri</li>
         <li>Sat</li>
       </ul>
-      <ul class="calendar-dates"></ul>
+      <ul class="calendar-dates" data-calendar-target="dates"></ul>
     </div>
   </div>
 
   <div id="med-day-info" class="card border border-primary rounded-4 mx-auto mt-4">
     <div class="card-body">
-
-      <h3 class="mb-3"> <%= Date.today.strftime("%B") %> <%= Date.today.day %>, <%= Date.today.year %> </h3>
-
-      <% medications = @medications.sort_by { |medication| medication.reminder_time } %>
-      <% medications.each do |medication| %>
-        <p class="border border-primary border-top-0 border-start-0 rounded-4 p-1 mb-3">
-        <b> <%= medication.name.capitalize %> (<%= medication.dosage %>) </b>
-        <br> Reminder Time: <%= medication.reminder_time %> / <%= medication.frequency %> </p>
-      <% end %>
-
+      <h3 class="mb-3" data-calendar-target="dayInfoHeading"></h3>
+      <div data-calendar-target="dayInfoList"></div>
     </div>
   </div>
 
-  <h2 class="mt-5 mb-4"> View your follows' agendas </h2>
-
-  <% if @following.empty? %>
-    <p class="text-muted text-center mb-5"> You're not following anyone </p>
-  <% else %>
-    <div class="row g-4 justify-content-center mb-5">
-      <% @following.each do |followed_user| %>
-        <%= render "followed_user_agenda", followed_user: followed_user %>
-      <% end %>
-    </div>
-  <% end %>
-
+  <%= render "medications/medication_modal", medications: @medications %>
 </div>

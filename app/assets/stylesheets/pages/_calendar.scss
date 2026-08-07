@@ -13,7 +13,10 @@
 
 @media (max-width: 600px) {
   .calendar-container, #med-day-info {
-    width: 400px;
+    width: auto;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .calendar-dates li.highlight {
@@ -22,6 +25,12 @@
     margin-left: 8px;
     margin-right: 8px;
   }
+}
+
+[data-controller~="calendar"] {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 48px;
 }
 
 .calendar-container {
@@ -38,26 +47,26 @@
 }
 
 header .calendar-navigation {
-  width: 30px;
-  height: 30px;
+  width: 38px;
+  height: 38px;
   display: flex;
 }
 
 header .calendar-navigation span {
-  width: 30px;
-  height: 30px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  text-align: center;
-  line-height: 30px;
   border-radius: 50%;
   user-select: none;
-  color: $primary;
-  font-size: 2.8rem;
-  transition: background-color .15s ease;
+  color: $primary-dark;
+  transition: background-color .15s ease, color .15s ease;
 
   &:hover {
     color: white;
-    background-color: $primary;
+    background-color: $primary-dark;
   }
 }
 
@@ -89,11 +98,14 @@ header .calendar-current-date {
 
 .calendar-body li {
   width: calc(100% / 7);
-  height: 30px;
-  line-height: 30px;
-  font-size: 0.9rem;
+  height: 46px;
+  line-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
   color: #000000;
-  margin-top: 20px;
+  margin-top: 16px;
   position: relative;
   z-index: 1;
   cursor: pointer;
@@ -104,7 +116,7 @@ header .calendar-current-date {
 .calendar-body .calendar-weekdays li {
   cursor: default;
   font-weight: 500;
-  font-size: 0.85rem;
+  font-size: 13px;
 }
 
 .calendar-dates li.inactive {
@@ -137,9 +149,11 @@ header .calendar-current-date {
   border: none;
 }
 
-.calendar-dates li:not(.active):not(.inactive):not(.highlight):hover::before {
-  background-color: $primary;
-  transition: .15s ease;
+@media (hover: hover) and (pointer: fine) {
+  .calendar-dates li:not(.active):not(.inactive):not(.selected):hover::before {
+    background-color: $primary;
+    transition: .15s ease;
+  }
 }
 
 .calendar-dates li.highlight {
@@ -172,4 +186,146 @@ header .calendar-current-date {
   padding: .5rem 1rem;
   font-weight: 600;
   font-size: .8125rem;
+}
+
+.calendar-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto 32px;
+
+  &__label {
+    font-size: 16px;
+    font-weight: 700;
+    color: $text-muted;
+    margin-bottom: 0;
+  }
+
+  &__select {
+    border-radius: 12px;
+    border: 1.5px solid $border;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: $text-primary;
+    background-color: $card;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 4px $primary-glow;
+    }
+  }
+}
+
+.calendar-day__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.calendar-dates li.selected .calendar-day__number {
+  background: $primary;
+  color: white;
+  font-weight: 700;
+}
+
+.calendar-dates li.active.selected::before {
+  border: none;
+}
+
+.calendar-dot {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $primary;
+}
+
+.calendar-dates li.active .calendar-dot,
+.calendar-dates li.selected .calendar-dot,
+.calendar-dates li.inactive .calendar-dot {
+  display: none;
+}
+
+#med-day-info .card-body {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.calendar-day-info__row {
+  display: grid;
+  grid-template-columns: 60px 1fr auto auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0;
+  border-bottom: 1px solid $border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $primary-light;
+      border-radius: 8px;
+    }
+  }
+}
+
+.calendar-day-info__time {
+  font-size: 18px;
+  font-weight: 700;
+  color: $primary;
+}
+
+.calendar-day-info__name {
+  font-size: 17px;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.calendar-day-info__dosage {
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-muted;
+}
+
+.calendar-day-info__taken-badge,
+.calendar-day-info__missed-badge {
+  font-size: 13px;
+  font-weight: 700;
+  padding: .3rem .625rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.calendar-day-info__taken-badge {
+  background: $mint-light;
+  color: $mint;
+}
+
+.calendar-day-info__missed-badge {
+  background: $coral-light;
+  color: darken($coral, 15%);
+}
+
+.calendar-day-info__chevron {
+  color: $text-muted;
+  font-size: 14px;
 }
