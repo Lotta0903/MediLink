@@ -85,7 +85,7 @@
       </div>
 
       <div class="medication-modal-buttons d-flex">
-        <%= link_to "Edit", edit_medication_path(medication), class: "medication-modal-pill-btn btn btn-outline-primary rounded-pill flex-fill" %>
+        <%= link_to "Edit", edit_medication_path(medication), class: "medication-modal-pill-btn btn edit-btn rounded-pill flex-fill" %>
 
         <%= button_to "Delete", medication_path(medication), method: :delete,
               class: "medication-modal-pill-btn medication-modal-pill-btn--delete btn rounded-pill w-100",

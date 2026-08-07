@@ -29,17 +29,15 @@
     <%= simple_form_for medication, wrapper: false do |f| %>
       <%= f.error_notification %>
 
-      <p class="text-center" style="<%= section_label_style %> margin-top: 0;">What</p>
-
       <div class="mb-4" data-controller="custom-medication">
-        <label>Medication name</label>
+        <label class="mb-2">Medication name</label>
         <select data-custom-medication-target="select"
                 data-action="change->custom-medication#update"
                 class="form-select">
           <%= options_for_select([["Choose a medication...", ""]] + medication_names.map { |n| [n, n] }, name_in_presets ? medication.name : "") %>
         </select>
 
-        <p class="medication-form-hint mt-3 mb-2">If other, type medication name here</p>
+        <p class="medication-form-hint mt-3 mb-2 text-start">If other, type medication name here</p>
         <input type="text"
                data-custom-medication-target="customInput"
                data-action="input->custom-medication#update"
@@ -55,10 +53,8 @@
         <%= f.text_field :dosage, class: "form-control", placeholder: "e.g. 500mg" %>
       </div>
 
-      <p class="text-center" style="<%= section_label_style %>">How</p>
-
       <div class="mb-4" data-controller="frequency-days">
-        <label class="form-label-centered mb-3">Frequency</label>
+        <label class="form-label-start mb-3">Frequency</label>
         <div class="form-days-row d-flex flex-wrap justify-content-center">
           <% %w[Mon Tue Wed Thu Fri Sat Sun].each do |day| %>
             <input type="checkbox"
@@ -71,13 +67,13 @@
             <label for="frequency_day_<%= day.downcase %>" class="day-pill"><%= day %></label>
           <% end %>
         </div>
-        <p class="form-days-helper text-muted mt-2 mb-0 fst-italic">Select the days you take this medication</p>
+        <p class="form-days-helper text-muted mt-2 mb-0 fst-italic text-start">Select the days you take this medication</p>
 
         <%= f.hidden_field :frequency, data: { frequency_days_target: "hiddenName" } %>
       </div>
 
       <div class="mb-4">
-        <label class="form-label-centered mb-2">How often?</label>
+        <label class="form-label-start mb-2">How often?</label>
         <%= f.text_field :dose_frequency, class: "form-control", placeholder: "e.g. once a day, every 8 hours" %>
       </div>
 
@@ -93,11 +89,9 @@
         <%= f.select :with_food, ["No", "Yes", "Optional"], { include_blank: false }, class: "form-select" %>
       </div>
 
-      <p class="text-center" style="<%= section_label_style %>">When</p>
-
       <div class="mb-4" data-controller="time-picker">
         <label>Reminder time</label>
-        <div class="time-picker-row d-flex align-items-center">
+        <div class="time-picker-row d-flex align-items-center justify-content-center">
           <select data-time-picker-target="hours"
                   data-action="change->time-picker#update"
                   class="time-picker-select form-select">
@@ -116,11 +110,11 @@
 
       <div class="dates-row mb-4 d-flex justify-content-center">
         <div class="flex-fill">
-          <label class="form-label-centered">Start date</label>
+          <label class="text-center">Start date</label>
           <%= f.date_field :start_date, class: "form-control date-field-centered" %>
         </div>
         <div class="flex-fill">
-          <label class="form-label-centered">End date</label>
+          <label class="text-center">End date</label>
           <%= f.date_field :end_date, class: "form-control date-field-centered" %>
         </div>
       </div>

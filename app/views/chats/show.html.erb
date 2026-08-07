@@ -17,17 +17,17 @@
 
     <div class="medibot" data-chatbot-target="chatContainer">
 
-      <div id="messages">
+      <div id="messages" class="messages-container">
         <%= render "messages/messages", messages:@chat.messages %>
       </div>
 
-      <div id="new_message_container" class="mt-4" data-chatbot-target="inputField" data-action="submit->chatbot#submit">
+      <div id="new_message_container" class=" new-messages-container mt-4" data-chatbot-target="inputField" data-action="submit->chatbot#submit">
 
         <div class="greeting <%= "d-none" if @chat.messages.any? %>" data-chatbot-target="hideGreeting">
           <% if @user.first_name.present? %>
-            <h1 id="chat_title">Hey <%= @user.first_name %>, how can I <span id="span">help you today?</span>🩺</h1>
+            <h1 id="chat_title" class="chat-title">Hey <%= @user.first_name %>, how can I <span id="span">help you today?</span>🩺</h1>
           <% else %>
-            <h1 id="chat_title">How can I <span id="span">help you today</span>🩺</h1>
+            <h1 id="chat_title" class="chat-title">How can I help you today🩺</h1>
           <% end %>
           <p>Your AI assistant for medication guidance</p>
         </div>

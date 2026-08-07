@@ -16,22 +16,19 @@
     <% end %>
   </div>
 
-  <div class="medication-card-content-vertical d-flex flex-grow-1">
-    <p class="medication-time-vertical text-primary mb-0"><%= medication.reminder_time %></p>
-
-    <div class="medication-details d-flex flex-column">
-      <div class="medication-name-wrapper d-flex align-items-center justify-content-center">
-        <span class="medication-pill-icon">💊</span>
-        <p class="medication-name mb-0"><%= medication.name %></p>
-      </div>
-
-      <p class="medication-dosage mb-0"><%= medication.dosage %></p>
-      <p class="medication-frequency text-muted mb-0"><%= medication.frequency %></p>
+  <div class="medication-card-content-vertical flex-grow-1">
+    <div class="medication-name-wrapper d-flex align-items-center">
+      <span class="medication-pill-icon"><%= medication_icon(medication) %></span>
+      <p class="medication-name mb-0"><%= medication.name %></p>
     </div>
-  </div>
 
-  <div class="medication-card-footer mt-auto text-center pt-2">
-    <div class="medication-footer-actions d-flex flex-nowrap justify-content-center align-items-center">
+    <p class="medication-dosage mb-0"><%= medication.dosage %></p>
+
+    <div class="medication-info-row">
+      <span class="medication-time-inline">
+        <i class="bi bi-clock"></i> <%= medication.reminder_time %>
+      </span>
+      <span class="medication-frequency"><%= medication.frequency %></span>
 
       <% if medication.taken_today? %>
         <span class="medication-taken-badge badge rounded-pill d-inline-flex align-items-center justify-content-center">
@@ -44,15 +41,16 @@
               class: "btn btn-mark-taken btn-action rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center medication-action-button",
               data: { controller: "taken-button", action: "click->taken-button#flash click->medication-modal#stop" } %>
       <% end %>
-
-      <%= button_to medication_chats_path(medication),
-            method: :post,
-            class: "btn btn-medibot-pill rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center medication-action-button",
-            data: { action: "click->medication-modal#stop" } do %>
-        💬 Ask MediBot
-      <% end %>
-
     </div>
+  </div>
+
+  <div class="medication-card-footer-actions">
+    <%= button_to medication_chats_path(medication),
+          method: :post,
+          class: "btn btn-medibot-pill rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center medication-action-button",
+          data: { action: "click->medication-modal#stop" } do %>
+      💬 Ask MediBot
+    <% end %>
   </div>
 
 </div>

@@ -1,15 +1,16 @@
 <%
   size ||= 64
   font_size = (size * 0.35).round
+  custom_class = local_assigns[:class]
 %>
 
 <% if user.photo_url.present? %>
   <img src="<%= user.photo_url %>"
-       class="rounded-circle"
+       class="rounded-circle <%= custom_class %>"
        style="width: <%= size %>px; height: <%= size %>px; object-fit: cover;"
        alt="<%= user.full_name %>">
 <% else %>
-  <div class="avatar-placeholder d-flex align-items-center justify-content-center mx-auto"
+  <div class="avatar-placeholder d-flex align-items-center justify-content-center <%= custom_class %>"
        style="width: <%= size %>px; height: <%= size %>px; font-size: <%= font_size %>px;">
     <%= user.initials %>
   </div>

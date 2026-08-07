@@ -2,12 +2,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <% end %>
 
-<div class="medications-container container mx-auto px-4 pb-4">
+<div class="medications-container container mx-auto px-4 pb-4 ">
   <div class="text-center mb-4">
     <h1 class="page-title mt-4 mb-3">My Medications</h1>
   </div>
 
-  <div class="text-center mb-5">
+  <div class=" medications-section-header text-center mb-5">
     <%= link_to new_medication_path, class: "btn-add-medication text-decoration-none", data: { controller: "add-button", action: "mousedown->add-button#pulse" } do %>
       <span class="btn-add-medication-icon">+</span>
       Add a medication
@@ -22,9 +22,13 @@
 
     <div data-controller="medication-modal">
       <section class="mb-4">
-        <h2 class="medications-section-title mb-3">Upcoming ⏰</h2>
+        <div class="medications-section-header mb-3">
+          <h2 class="medications-section-title mb-0">⏰ Upcoming</h2>
+        </div>
         <% if upcoming.empty? %>
-          <p class="text-muted text-center">Nothing left to take today.</p>
+          <div class="medications-section-header">
+            <p class="text-muted mb-0">Nothing left to take today.</p>
+          </div>
         <% else %>
           <div class="vertical-scroll-wrapper align-items-center">
             <% upcoming.each do |medication| %>
@@ -37,9 +41,13 @@
       <hr class="medications-divider">
 
       <section class="mt-4">
-        <h2 class="medications-section-title mb-3">Taken today ✓</h2>
+        <div class="medications-section-header mb-3">
+          <h2 class="medications-section-title mb-0">✓ Taken today </h2>
+        </div>
         <% if taken_today.empty? %>
-          <p class="text-muted text-center">No medications taken yet today.</p>
+          <div class="medications-section-header">
+            <p class="text-muted mb-0">No medications taken yet today.</p>
+          </div>
         <% else %>
           <div class="vertical-scroll-wrapper align-items-center">
             <% taken_today.each do |medication| %>
@@ -54,9 +62,11 @@
 
     <hr class="medications-divider">
 
-    <section class="text-center my-4">
-      <h2 class="medications-section-title mb-4">Calendar 📅</h2>
-      <%= link_to "Check your agenda", calendar_medications_path, class: "btn-add-medication text-decoration-none" %>
+    <section class="my-4">
+      <div class="medications-section-header">
+        <h2 class="medications-section-title mb-4">📅 Calendar</h2>
+        <%= link_to "Check your agenda", calendar_medications_path, class: "btn-add-medication text-decoration-none" %>
+      </div>
     </section>
   <% end %>
 </div>

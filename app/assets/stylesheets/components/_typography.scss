@@ -1,21 +1,24 @@
 h1,
 h2 {
   font-weight: 600;
-  color: $primary;
+  color: #0A1A3A;
 }
 
 h2 {
   font-size: 1.25rem; // 20px
   letter-spacing: .02em;
-  text-align: center;
 }
 
 .page-title {
+  color: #0A1A3A;
+  text-align: center;
+}
+
+.page-title-name {
   font-size: 1.75rem; // 28px
   font-weight: 700;
   letter-spacing: .03em;
-  color: $primary;
-  text-align: center;
+  color: #0A1A3A;
 }
 
 .card-time {
@@ -37,7 +40,7 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: $text-muted;
+  color: #ffff;
 }
 
 .section-gap {

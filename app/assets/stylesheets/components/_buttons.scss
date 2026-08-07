@@ -3,6 +3,33 @@
   letter-spacing: .01em;
 }
 
+.edit-profile-btn {
+  background-color: $navy;
+  color: #ffff;
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+}
+
+.edit-profile-submit{
+  background-color: $navy;
+  color: #ffff;
+}
+
+.profile-circle-btn {
+  padding: .875rem 2.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
 .btn-primary {
   box-shadow: 0 4px 14px $primary-glow;
 
@@ -27,12 +54,12 @@
 // Data-modifying action buttons (Add a medication, Follow, Edit profile, Mark as
 // taken) get a subtle lift on top of the color/shadow change above.
 .btn-action {
-  transition: color .15s, background-color .15s, box-shadow .15s, transform .15s;
+  transition: color .15s, backgrund-color .15s, box-shadow .15s, transform .15s;
 
   &:hover,
   &:focus {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px $primary-glow;
+    box-shadow: 0 4px 12px;
   }
 
   &:active {
@@ -43,7 +70,6 @@
 
 .btn.flash-success {
   background: $mint !important;
-  border-color: $mint !important;
   color: $card !important;
   animation: takenPulse .4s cubic-bezier(.4, 0, .2, 1);
 }
@@ -107,9 +133,8 @@ button:hover .icon-muted.icon-danger-hover {
 
 // "Ask MediBot" pill — blue, matching the app's primary color
 .btn-medibot-pill {
-  background-color: $primary-light;
-  color: $primary;
-  border: 1.5px solid $primary;
+  background-color: #1BC9C4;
+  color: #ffff;
   transition: background-color .15s, color .15s, transform .1s;
 
   &:hover {
@@ -127,20 +152,20 @@ button:hover .icon-muted.icon-danger-hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   gap: .5rem; // 8px
-  background-color: $card;
-  color: $primary;
+  color: #1BC9C4;
   font-size: .875rem; // 14px
   font-weight: 600;
   letter-spacing: .03em;
   padding: .75rem 2rem; // 12px 32px
   border-radius: 999px;
-  border: 2px solid $primary;
+  border: 2px solid #1BC9C4;
   transition: background-color .15s, color .15s, box-shadow .15s, transform .1s;
 
-  &:hover {
-    background-color: $primary;
-    color: $card;
+  &:hover{
+    background-color: #1BC9C4;
+    color: #ffff;
   }
 
   &.clicked {
@@ -149,14 +174,7 @@ button:hover .icon-muted.icon-danger-hover {
     transform: scale(.97);
 
     .btn-add-medication-icon {
-      color: $card;
+      color: #1BC9C4;
     }
   }
-}
-
-.btn-add-medication-icon {
-  font-size: 1rem; // 16px
-  line-height: 1;
-  color: $primary;
-  transition: color .1s;
 }

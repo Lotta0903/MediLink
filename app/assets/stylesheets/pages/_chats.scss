@@ -1,5 +1,5 @@
 .medibot-container {
-  background-color: #F0FAFD;
+  background-color: #F8FAFC;
 }
 
 .medibot {
@@ -9,13 +9,13 @@
   padding: 0 20px;
   overflow: hidden;
   padding-top: 20px;
-  background-color: #F0FAFD;
+  background-color: #F8FAFC;
   min-height: calc(100vh - 59.75px);
   margin-left: 250px;
   transition: margin-left .3s;
 
 
-  #messages {
+  .messages-container {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
@@ -25,7 +25,7 @@
     margin-bottom: 130px;
   }
 
-  #new_message_container {
+  .new-messages-container {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -33,16 +33,10 @@
     padding: 15px;
     transition: all 0.3s ease;
 
-
-
-    #chat_title {
+    .chat-title {
       font-weight: 600;
       text-align: center;
-      color: black;
-
-      #span {
-        color: #06B6D4;
-      }
+      color: $navy;
     }
 
     p {
@@ -56,7 +50,7 @@
       max-width: 100%;
       margin: 0 auto;
 
-      #input-field {
+      .message-input-field {
         width: 100%;
         margin: 0;
         display: block;
@@ -72,7 +66,7 @@
         border-color: #f3f8ff;
       }
 
-      button {
+      .send-btn {
         position: absolute;
         right: 20px;
         bottom: 20px;
@@ -88,13 +82,13 @@
     justify-content: center;
     align-items: center;
 
-    #messages {
+    .messages-container {
       flex: 0;
       padding-bottom: 0;
       overflow: visible;
     }
 
-    #new_message_container {
+    .new-messages-container {
       position: relative;
       bottom: auto;
       left: auto;
@@ -112,19 +106,19 @@
   z-index: 1;
   transform: translateX(0);
   width: 250px;
-  background-color: #0F5C73;
+  background-color: $navy;
   padding: 20px 8px;
   overflow-y: auto;
   color: #E8F7FB;
   transition: transform 0.3s ease;
 
-  #new-chat {
+  .new-chat-wrapper {
     padding-top: 10px;
   }
 
   .new-chat-btn {
     border: none;
-    background-color: #0F5C73;
+    background-color: $navy;
     color: #E8F7FB;
   }
 
@@ -134,12 +128,12 @@
     border-radius: 8px;
 
     &:hover {
-      background-color: #17798F;
+      background-color: #11254F;
       cursor: pointer;
     }
 
     &.active {
-      background-color: #17798F;
+      background-color: #11254F;
     }
   }
 

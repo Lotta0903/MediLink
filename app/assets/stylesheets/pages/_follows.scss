@@ -4,6 +4,15 @@
   max-width: 1140px;
 }
 
+.follow-card-container{
+  margin: 0 auto;
+  width: 700px;
+}
+
+.follow-header {
+  text-align: start;
+}
+
 .follows-subtitle {
   font-size: .9375rem;
   font-weight: 500;
@@ -11,7 +20,6 @@
 }
 
 .follows-add-card {
-  max-width: 640px;
 
   .section-header {
     font-size: .6875rem;
@@ -24,20 +32,22 @@
 
   .follows-add-input {
     border-radius: 12px;
-    border-color: $border;
     padding: .625rem .875rem;
   }
 
   .follows-add-btn {
     border-radius: 12px;
     padding: .625rem 1.5rem;
+    background-color: #157347;
+    color: #ffff;
   }
 }
 
 // Followed user card
 
 .followed-user-card {
-  min-height: 260px;
+  min-height: 160px;
+  width: 300px;
   padding: 1.5rem;
 
   &__delete {
@@ -120,6 +130,7 @@
 
 .follower-card {
   min-height: 160px;
+  width: 300px;
   padding: 1rem;
   gap: .375rem;
 
@@ -131,4 +142,8 @@
   &__email {
     font-size: .8125rem;
   }
+}
+.row.no-gutter > * {
+  padding-left: 0;
+  padding-right: 0;
 }

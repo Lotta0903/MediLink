@@ -3,44 +3,45 @@
 <% end %>
 
 <div class="follows-container container mx-auto px-4 pb-5">
-  <div class="text-center mb-4">
-    <h1 class="page-title mt-4 mb-2">My Circle</h1>
-    <p class="follows-subtitle text-muted mb-0">The people you care about, all in one place.</p>
+    <div class="text-center mb-4">
+      <h1 class="page-title mt-4 mb-2">My Circle</h1>
+      <p class="follows-subtitle text-muted mb-0">The people you care about, all in one place.</p>
+    </div>
+
+  <div class= follow-card-container>
+    <div class="follows-add-card app-card mx-auto mb-5">
+      <%= form_with url: follows_path, method: :post, local: true, class: "follows-add-form" do %>
+        <input type="email" name="email" class="follows-add-input form-control flex-grow-1" placeholder="Enter their MediLink email" required>
+        <button type="submit" class="follows-add-btn text-nowrap btn-action">Follow</button>
+      <% end %>
+    </div>
+
+    <section class="mb-4">
+      <h2 class=" follow-header mb-3">People you follow</h2>
+      <% if @following.empty? %>
+        <p class="text-muted text-center">You're not following anyone yet.</p>
+      <% else %>
+        <div class="row g-4">
+          <% @following.each do |followed_user| %>
+            <%= render "followed_user_card", followed_user: followed_user %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+
+    <hr class="medications-divider">
+
+    <section>
+      <h2 class="follow-header mb-3">People following you</h2>
+      <% if @followers.empty? %>
+        <p class="text-muted text-center">No one is following you yet.</p>
+      <% else %>
+        <div class="row g-4">
+          <% @followers.each do |follower| %>
+            <%= render "follower_card", follower: follower %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
   </div>
-
-  <div class="follows-add-card app-card mx-auto mb-5">
-    <p class="section-header mb-2">Add someone to your circle</p>
-    <%= form_with url: follows_path, method: :post, local: true, class: "follows-add-form" do %>
-      <input type="email" name="email" class="follows-add-input form-control flex-grow-1" placeholder="Enter their MediLink email" required>
-      <button type="submit" class="follows-add-btn btn btn-primary btn-action text-nowrap">Follow</button>
-    <% end %>
-  </div>
-
-  <section class="mb-4">
-    <h2 class="mb-3">People you follow</h2>
-    <% if @following.empty? %>
-      <p class="text-muted text-center">You're not following anyone yet.</p>
-    <% else %>
-      <div class="row g-4 justify-content-center">
-        <% @following.each do |followed_user| %>
-          <%= render "followed_user_card", followed_user: followed_user %>
-        <% end %>
-      </div>
-    <% end %>
-  </section>
-
-  <hr class="medications-divider">
-
-  <section>
-    <h2 class="mb-3">People following you</h2>
-    <% if @followers.empty? %>
-      <p class="text-muted text-center">No one is following you yet.</p>
-    <% else %>
-      <div class="row g-4 justify-content-center">
-        <% @followers.each do |follower| %>
-          <%= render "follower_card", follower: follower %>
-        <% end %>
-      </div>
-    <% end %>
-  </section>
 </div>
