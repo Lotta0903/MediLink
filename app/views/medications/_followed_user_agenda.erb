@@ -1,0 +1,17 @@
+<div class="col-12 col-md-4">
+  <div class="app-card mx-auto position-relative h-100">
+
+    <div class="d-flex align-items-center gap-3 mb-3">
+      <%= render "shared/user_avatar", user: followed_user, size: 56 %>
+      <div>
+        <p id="agenda-follow-name" class="mb-0"><%= followed_user.full_name %></p>
+        <p id="agenda-follow-email" class="text-muted mb-0"><%= followed_user.email %></p>
+      </div>
+    </div>
+
+    <button type="button" id="agenda-button" class="btn btn-outline-primary w-100">
+      View their agenda
+    </button>
+
+  </div>
+</div>

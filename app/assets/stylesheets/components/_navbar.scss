@@ -46,3 +46,33 @@
     font-weight: 600;
   }
 }
+
+// Notification badge
+
+.notification-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background-color: #FB7185;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+  margin-left: 4px;
+  line-height: 1;
+  vertical-align: middle;
+  box-shadow: 0 2px 6px rgba(251, 113, 133, 0.4);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}

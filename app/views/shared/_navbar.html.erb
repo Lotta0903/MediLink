@@ -12,15 +12,21 @@
       <ul class="navbar-nav ms-auto d-flex align-items-center gap-3">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "My medications", medications_path, class: "nav-link #{"active" if current_page?(medications_path) || current_page?(calendar_medications_path)}", aria: { current: current_page?(medications_path) || current_page?(calendar_medications_path) ? "page" : nil } %>
+            <%= link_to "My medications", medications_path, class: "nav-link #{"active" if current_page?(medications_path)}", aria: { current: current_page?(medications_path) ? "page" : nil } %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Calendar", calendar_medications_path, class: "nav-link #{"active" if current_page?(calendar_medications_path)}", aria: { current: current_page?(calendar_medications_path) ? "page" : nil } %>
           </li>
           <li class="nav-item">
             <%= link_to "My Circle", follows_path, class: "nav-link #{"active" if current_page?(follows_path)}", aria: { current: current_page?(follows_path) ? "page" : nil } %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item position-relative">
             <% unread_count = current_user.notifications.unread.count %>
             <%= link_to notifications_path, class: "nav-link #{"active" if current_page?(notifications_path)}", aria: { current: current_page?(notifications_path) ? "page" : nil } do %>
-              Notifications<%= " (#{unread_count})" if unread_count > 0 %>
+              Notifications
+              <% if unread_count > 0 %>
+                <span class="notification-badge"><%= unread_count %></span>
+              <% end %>
             <% end %>
           </li>
           <li class="nav-item">

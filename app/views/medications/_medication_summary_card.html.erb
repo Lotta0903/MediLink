@@ -14,21 +14,25 @@
       </div>
     </div>
 
-    <div class="medication-card-footer d-flex align-items-center justify-content-between">
-      <div class="medication-card-time mb-0">
-        <i class="fa-regular fa-clock"></i> <%= medication.reminder_time %>
-      </div>
-
-      <div class="medication-card-action" data-action="click->medication-modal#stop">
-        <% if medication.taken_today? %>
-          <span class="medication-card-taken-badge badge rounded-pill d-inline-flex align-items-center justify-content-center">
-            ✓ TAKEN <%= medication.last_taken_time %>
-          </span>
-        <% else %>
-          <%= button_to "✓ Mark as taken", medication_medication_logs_path(medication),
-                method: :post,
-                class: "medication-card-pill-btn btn btn-action rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center",
-                data: { controller: "taken-button", action: "click->taken-button#flash click->medication-modal#stop" } %>
+    <div class="mt-auto text-center pt-2">
+      <div class="medication-card-buttons d-flex flex-nowrap justify-content-center align-items-center">
+        <% if date == Date.current %>
+          <% if medication.taken_today? %>
+            <span class="medication-card-taken-badge badge rounded-pill d-inline-flex align-items-center justify-content-center">
+              ✓ TAKEN <%= medication.last_taken_time %>
+            </span>
+          <% else %>
+            <%= button_to "✓ Mark as taken", medication_medication_logs_path(medication),
+                  method: :post,
+                  class: "medication-card-pill-btn btn btn-mark-taken btn-action rounded-pill text-uppercase d-inline-flex align-items-center justify-content-center",
+                  data: { controller: "taken-button", action: "click->taken-button#flash click->medication-modal#stop" } %>
+          <% end %>
+        <% elsif date < Date.current %>
+          <% if medication.medication_logs.where(taken_at: date.all_day).exists? %>
+            <span class="badge badge-success-soft rounded-pill">Taken</span>
+          <% else %>
+            <span class="badge badge-danger-soft rounded-pill">Missed</span>
+          <% end %>
         <% end %>
       </div>
     </div>
