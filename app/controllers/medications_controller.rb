@@ -21,6 +21,8 @@ class MedicationsController < ApplicationController
     @following_medications_by_user = @following.each_with_object({}) do |followed_user, hash|
       hash[followed_user.id] = medications_by_date_hash(following_medications[followed_user.id] || [], window_start, window_end)
     end
+
+    @modal_medications = @medications.to_a + following_medications.values.flatten
   end
 
   def new

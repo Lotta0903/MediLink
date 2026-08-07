@@ -84,13 +84,15 @@
         </div>
       </div>
 
-      <div class="medication-modal-buttons d-flex">
-        <%= link_to "Edit", edit_medication_path(medication), class: "medication-modal-pill-btn btn btn-outline-primary rounded-pill flex-fill" %>
+      <% if medication.user_id == current_user.id %>
+        <div class="medication-modal-buttons d-flex">
+          <%= link_to "Edit", edit_medication_path(medication), class: "medication-modal-pill-btn btn btn-outline-primary rounded-pill flex-fill" %>
 
-        <%= button_to "Delete", medication_path(medication), method: :delete,
-              class: "medication-modal-pill-btn medication-modal-pill-btn--delete btn rounded-pill w-100",
-              form: { class: "flex-fill", data: { turbo_confirm: "Are you sure you want to delete this medication?" } } %>
-      </div>
+          <%= button_to "Delete", medication_path(medication), method: :delete,
+                class: "medication-modal-pill-btn medication-modal-pill-btn--delete btn rounded-pill w-100",
+                form: { class: "flex-fill", data: { turbo_confirm: "Are you sure you want to delete this medication?" } } %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

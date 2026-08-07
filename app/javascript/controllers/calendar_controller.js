@@ -118,18 +118,11 @@ export default class extends Controller {
       return
     }
 
-    const isMine = this.currentViewer === "me"
-
     this.dayInfoListTarget.innerHTML = meds.map((med) => {
-      const clickableClass = isMine ? "calendar-day-info__row--clickable" : ""
-      const modalAttrs = isMine
-        ? `data-action="click->medication-modal#open" data-medication-id="${med.id}"`
-        : ""
-
       const badge = this.statusBadge(med.status)
 
       return `
-        <div class="calendar-day-info__row ${clickableClass}" ${modalAttrs}>
+        <div class="calendar-day-info__row calendar-day-info__row--clickable" data-action="click->medication-modal#open" data-medication-id="${med.id}">
           <span class="calendar-day-info__time">${this.formatTime(med.reminder_time)}</span>
           <span class="calendar-day-info__name">${this.escapeHtml(med.name)}</span>
           <span class="calendar-day-info__dosage">${this.escapeHtml(med.dosage || "")}</span>
