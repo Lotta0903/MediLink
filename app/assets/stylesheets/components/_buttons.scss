@@ -64,7 +64,7 @@
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px $primary-glow;
+    box-shadow: 0 2px 6px;
   }
 }
 
@@ -169,7 +169,6 @@ button:hover .icon-muted.icon-danger-hover {
   }
 
   &.clicked {
-    background: $coral !important;
     color: $card !important;
     transform: scale(.97);
 
