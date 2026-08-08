@@ -1,9 +1,14 @@
 <div class="medication-modal-overlay d-none"
      data-medication-modal-target="modal"
      data-action="click->medication-modal#close keydown.esc@window->medication-modal#close">
+
   <% medications.each do |medication| %>
-    <div class="medication-modal-content d-none" data-medication-modal-target="content" data-medication-id-value="<%= medication.id %>">
-      <button type="button" class="medication-modal-close" data-action="click->medication-modal#close">✕</button>
+    <div class="medication-modal-content d-none"
+         data-medication-modal-target="content"
+         data-medication-id-value="<%= medication.id %>">
+
+      <button type="button" class="medication-modal-close"
+              data-action="click->medication-modal#close">✕</button>
 
       <p class="medication-modal-name"><%= medication.name %></p>
 
@@ -20,21 +25,29 @@
           <span class="medication-modal-row-value"><%= medication.reminder_time %></span>
         </div>
 
-        <% frequency_display = medication.frequency.present? ? medication.frequency.to_s.split(",").map(&:strip).join(" ") : medication.dose_frequency %>
+        <% frequency_display =
+             medication.frequency.present? ?
+               medication.frequency.to_s.split(",").map(&:strip).join(" ") :
+               medication.dose_frequency %>
+
         <div class="medication-modal-row d-flex justify-content-between">
           <span class="medication-modal-row-label">Frequency</span>
           <span class="medication-modal-row-value"><%= frequency_display.presence || "—" %></span>
         </div>
 
-        <% duration_display = if medication.start_date.present? && medication.end_date.present?
-             months = ((medication.end_date.year * 12 + medication.end_date.month) - (medication.start_date.year * 12 + medication.start_date.month))
-             days = (medication.end_date - medication.start_date).to_i
-             if months >= 1
-               "#{months} month#{"s" if months != 1}"
-             else
-               "#{days} day#{"s" if days != 1}"
-             end
-           end %>
+        <% duration_display =
+             if medication.start_date.present? && medication.end_date.present?
+               months = ((medication.end_date.year * 12 + medication.end_date.month) -
+                         (medication.start_date.year * 12 + medication.start_date.month))
+               days = (medication.end_date - medication.start_date).to_i
+
+               if months >= 1
+                 "#{months} month#{"s" if months != 1}"
+               else
+                 "#{days} day#{"s" if days != 1}"
+               end
+             end %>
+
         <div class="medication-modal-row d-flex justify-content-between">
           <span class="medication-modal-row-label">Duration</span>
           <span class="medication-modal-row-value"><%= duration_display || "—" %></span>
@@ -77,27 +90,32 @@
       <div class="medication-modal-section">
         <p class="medication-modal-section-heading mb-2">This week</p>
 
-        <% taken_count = (0..6).count { |offset| medication.medication_logs.where(taken_at: (Date.current - offset.days).all_day).exists? } %>
+        <% taken_count =
+             (0..6).count { |offset|
+               medication.medication_logs.where(
+                 taken_at: (Date.current - offset.days).all_day
+               ).exists?
+             } %>
+
         <div class="medication-modal-row d-flex justify-content-between">
           <span class="medication-modal-row-label">Taken</span>
           <span class="medication-modal-row-value"><%= taken_count %> out of 7 days</span>
         </div>
       </div>
 
-<<<<<<< HEAD
-      <% if medication.user_id == current_user.id %>
-        <div class="medication-modal-buttons d-flex">
-          <%= link_to "Edit", edit_medication_path(medication), class: "medication-modal-pill-btn btn btn-outline-primary rounded-pill flex-fill" %>
-=======
       <div class="medication-modal-buttons d-flex">
-        <%= link_to "Edit", edit_medication_path(medication), class: "medication-modal-pill-btn btn edit-btn rounded-pill flex-fill" %>
->>>>>>> c561b87 (improve frontend styling and layout)
+        <%= link_to "Edit",
+                    edit_medication_path(medication),
+                    class: "medication-modal-pill-btn btn edit-btn rounded-pill flex-fill" %>
 
-          <%= button_to "Delete", medication_path(medication), method: :delete,
-                class: "medication-modal-pill-btn medication-modal-pill-btn--delete btn rounded-pill w-100",
-                form: { class: "flex-fill", data: { turbo_confirm: "Are you sure you want to delete this medication?" } } %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+        <%= button_to "Delete",
+                      medication_path(medication),
+                      method: :delete,
+                      class: "medication-modal-pill-btn medication-modal-pill-btn--delete btn rounded-pill w-100",
+                      form: { class: "flex-fill",
+                              data: { turbo_confirm: "Are you sure you want to delete this medication?" } } %>
+      </div>
+
+    </div> <!-- closes .medication-modal-content -->
+  <% end %> <!-- closes medications.each -->
+</div> <!-- closes overlay -->
